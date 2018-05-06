@@ -1,0 +1,201 @@
+ID,EMP,ZIP,STATE,CITY,STREET,BLDG,HOUSE
+1,1,11413,NY,Springfield Gardens,609 Colonial Drive ,,5
+2,2,30252,GA,Mcdonough,14 Riverside Drive ,,5
+3,3,16066,PA,Cranberry Twp,275 Route 100 ,,5
+4,4,60068,IL,Park Ridge,179 13th Street ,,5
+5,5,23832,VA,Chesterfield,227 Street Road ,,5
+6,6,66801,KS,Emporia,488 Hamilton Road ,,5
+7,7,21060,MD,Glen Burnie,980 Country Club Road ,,5
+8,8,43015,OH,Delaware,22 Linda Lane ,,5
+9,9,20136,VA,Bristow,497 Lake Avenue ,,5
+10,10,30114,GA,Canton,125 Hillside Avenue ,,5
+11,11,6118,CT,East Hartford,406 Linden Avenue ,,5
+12,12,30252,GA,Mcdonough,836 Pleasant Street ,,5
+13,13,34491,FL,Summerfield,254 Washington Avenue ,,5
+14,14,98503,WA,Lacey,128 Forest Drive ,,5
+15,15,60103,IL,Bartlett,156 Surrey Lane ,,5
+16,16,10541,NY,Mahopac,936 3rd Street ,,5
+17,17,60621,IL,Chicago,68 State Street East ,,5
+18,18,37040,TN,Clarksville,632 Valley Road ,,5
+19,19,11354,NY,Flushing,167 Green Street ,,5
+20,20,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+21,21,30114,GA,Canton,125 Hillside Avenue ,,5
+22,22,66801,KS,Emporia,488 Hamilton Road ,,5
+23,23,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+24,24,66801,KS,Emporia,488 Hamilton Road ,,5
+25,25,30114,GA,Canton,125 Hillside Avenue ,,5
+26,26,66801,KS,Emporia,488 Hamilton Road ,,5
+27,27,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+28,28,30114,GA,Canton,125 Hillside Avenue ,,5
+29,29,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+30,30,66801,KS,Emporia,488 Hamilton Road ,,5
+31,31,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+32,32,66801,KS,Emporia,488 Hamilton Road ,,5
+33,33,30114,GA,Canton,125 Hillside Avenue ,,5
+34,34,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+35,35,66801,KS,Emporia,488 Hamilton Road ,,5
+36,36,30114,GA,Canton,125 Hillside Avenue ,,5
+37,37,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+38,38,11413,NY,Springfield Gardens,609 Colonial Drive ,,5
+39,39,30252,GA,Mcdonough,14 Riverside Drive ,,5
+40,40,16066,PA,Cranberry Twp,275 Route 100 ,,5
+41,41,60068,IL,Park Ridge,179 13th Street ,,5
+42,42,23832,VA,Chesterfield,227 Street Road ,,5
+43,43,66801,KS,Emporia,488 Hamilton Road ,,5
+44,44,21060,MD,Glen Burnie,980 Country Club Road ,,5
+45,45,43015,OH,Delaware,22 Linda Lane ,,5
+46,46,20136,VA,Bristow,497 Lake Avenue ,,5
+47,47,30114,GA,Canton,125 Hillside Avenue ,,5
+48,48,6118,CT,East Hartford,406 Linden Avenue ,,5
+49,49,30252,GA,Mcdonough,836 Pleasant Street ,,5
+50,50,34491,FL,Summerfield,254 Washington Avenue ,,5
+51,51,98503,WA,Lacey,128 Forest Drive ,,5
+52,52,60103,IL,Bartlett,156 Surrey Lane ,,5
+53,53,10541,NY,Mahopac,936 3rd Street ,,5
+54,54,60621,IL,Chicago,68 State Street East ,,5
+55,55,37040,TN,Clarksville,632 Valley Road ,,5
+56,56,11354,NY,Flushing,167 Green Street ,,5
+57,57,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+58,58,30114,GA,Canton,125 Hillside Avenue ,,5
+59,59,66801,KS,Emporia,488 Hamilton Road ,,5
+60,60,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+61,61,66801,KS,Emporia,488 Hamilton Road ,,5
+62,62,30114,GA,Canton,125 Hillside Avenue ,,5
+63,63,66801,KS,Emporia,488 Hamilton Road ,,5
+64,64,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+65,65,30114,GA,Canton,125 Hillside Avenue ,,5
+66,66,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+67,67,66801,KS,Emporia,488 Hamilton Road ,,5
+68,68,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+69,69,66801,KS,Emporia,488 Hamilton Road ,,5
+70,70,30114,GA,Canton,125 Hillside Avenue ,,5
+71,71,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+72,72,66801,KS,Emporia,488 Hamilton Road ,,5
+73,73,30114,GA,Canton,125 Hillside Avenue ,,5
+74,74,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+75,75,11413,NY,Springfield Gardens,609 Colonial Drive ,,5
+76,76,30252,GA,Mcdonough,14 Riverside Drive ,,5
+77,77,16066,PA,Cranberry Twp,275 Route 100 ,,5
+78,78,60068,IL,Park Ridge,179 13th Street ,,5
+79,79,23832,VA,Chesterfield,227 Street Road ,,5
+80,80,66801,KS,Emporia,488 Hamilton Road ,,5
+81,81,21060,MD,Glen Burnie,980 Country Club Road ,,5
+82,82,43015,OH,Delaware,22 Linda Lane ,,5
+83,83,20136,VA,Bristow,497 Lake Avenue ,,5
+84,84,30114,GA,Canton,125 Hillside Avenue ,,5
+85,85,6118,CT,East Hartford,406 Linden Avenue ,,5
+86,86,30252,GA,Mcdonough,836 Pleasant Street ,,5
+87,87,34491,FL,Summerfield,254 Washington Avenue ,,5
+88,88,98503,WA,Lacey,128 Forest Drive ,,5
+89,89,60103,IL,Bartlett,156 Surrey Lane ,,5
+90,90,10541,NY,Mahopac,936 3rd Street ,,5
+91,91,60621,IL,Chicago,68 State Street East ,,5
+92,92,37040,TN,Clarksville,632 Valley Road ,,5
+93,93,11354,NY,Flushing,167 Green Street ,,5
+94,94,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+95,95,30114,GA,Canton,125 Hillside Avenue ,,5
+96,96,66801,KS,Emporia,488 Hamilton Road ,,5
+97,97,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+98,98,66801,KS,Emporia,488 Hamilton Road ,,5
+99,99,30114,GA,Canton,125 Hillside Avenue ,,5
+100,100,66801,KS,Emporia,488 Hamilton Road ,,5
+101,101,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+102,102,30114,GA,Canton,125 Hillside Avenue ,,5
+103,103,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+104,104,66801,KS,Emporia,488 Hamilton Road ,,5
+105,105,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+106,106,66801,KS,Emporia,488 Hamilton Road ,,5
+107,107,30114,GA,Canton,125 Hillside Avenue ,,5
+108,108,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+109,109,66801,KS,Emporia,488 Hamilton Road ,,5
+110,110,30114,GA,Canton,125 Hillside Avenue ,,5
+111,111,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+112,112,11413,NY,Springfield Gardens,609 Colonial Drive ,,5
+113,113,30252,GA,Mcdonough,14 Riverside Drive ,,5
+114,114,16066,PA,Cranberry Twp,275 Route 100 ,,5
+115,115,60068,IL,Park Ridge,179 13th Street ,,5
+116,116,23832,VA,Chesterfield,227 Street Road ,,5
+117,117,66801,KS,Emporia,488 Hamilton Road ,,5
+118,118,21060,MD,Glen Burnie,980 Country Club Road ,,5
+119,119,43015,OH,Delaware,22 Linda Lane ,,5
+120,120,20136,VA,Bristow,497 Lake Avenue ,,5
+121,121,30114,GA,Canton,125 Hillside Avenue ,,5
+122,122,6118,CT,East Hartford,406 Linden Avenue ,,5
+123,123,30252,GA,Mcdonough,836 Pleasant Street ,,5
+124,124,34491,FL,Summerfield,254 Washington Avenue ,,5
+125,125,98503,WA,Lacey,128 Forest Drive ,,5
+126,126,60103,IL,Bartlett,156 Surrey Lane ,,5
+127,127,10541,NY,Mahopac,936 3rd Street ,,5
+128,128,60621,IL,Chicago,68 State Street East ,,5
+129,129,37040,TN,Clarksville,632 Valley Road ,,5
+130,130,11354,NY,Flushing,167 Green Street ,,5
+131,131,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+132,132,30114,GA,Canton,125 Hillside Avenue ,,5
+133,133,66801,KS,Emporia,488 Hamilton Road ,,5
+134,134,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+135,135,66801,KS,Emporia,488 Hamilton Road ,,5
+136,136,30114,GA,Canton,125 Hillside Avenue ,,5
+137,137,66801,KS,Emporia,488 Hamilton Road ,,5
+138,138,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+139,139,30114,GA,Canton,125 Hillside Avenue ,,5
+140,140,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+141,141,66801,KS,Emporia,488 Hamilton Road ,,5
+142,142,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+143,143,66801,KS,Emporia,488 Hamilton Road ,,5
+144,144,30114,GA,Canton,125 Hillside Avenue ,,5
+145,145,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+146,146,66801,KS,Emporia,488 Hamilton Road ,,5
+147,147,30114,GA,Canton,125 Hillside Avenue ,,5
+148,148,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+149,149,11413,NY,Springfield Gardens,609 Colonial Drive ,,5
+150,150,30252,GA,Mcdonough,14 Riverside Drive ,,5
+151,151,16066,PA,Cranberry Twp,275 Route 100 ,,5
+152,152,60068,IL,Park Ridge,179 13th Street ,,5
+153,153,23832,VA,Chesterfield,227 Street Road ,,5
+154,154,66801,KS,Emporia,488 Hamilton Road ,,5
+155,155,21060,MD,Glen Burnie,980 Country Club Road ,,5
+156,156,43015,OH,Delaware,22 Linda Lane ,,5
+157,157,20136,VA,Bristow,497 Lake Avenue ,,5
+158,158,30114,GA,Canton,125 Hillside Avenue ,,5
+159,159,6118,CT,East Hartford,406 Linden Avenue ,,5
+160,160,30252,GA,Mcdonough,836 Pleasant Street ,,5
+161,161,34491,FL,Summerfield,254 Washington Avenue ,,5
+162,162,98503,WA,Lacey,128 Forest Drive ,,5
+163,163,60103,IL,Bartlett,156 Surrey Lane ,,5
+164,164,10541,NY,Mahopac,936 3rd Street ,,5
+165,165,60621,IL,Chicago,68 State Street East ,,5
+166,166,37040,TN,Clarksville,632 Valley Road ,,5
+167,167,11354,NY,Flushing,167 Green Street ,,5
+168,168,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+169,169,30114,GA,Canton,125 Hillside Avenue ,,5
+170,170,66801,KS,Emporia,488 Hamilton Road ,,5
+171,171,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+172,172,66801,KS,Emporia,488 Hamilton Road ,,5
+173,173,30114,GA,Canton,125 Hillside Avenue ,,5
+174,174,66801,KS,Emporia,488 Hamilton Road ,,5
+175,175,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+176,176,30114,GA,Canton,125 Hillside Avenue ,,5
+177,177,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+178,178,66801,KS,Emporia,488 Hamilton Road ,,5
+179,179,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+180,180,66801,KS,Emporia,488 Hamilton Road ,,5
+181,181,30114,GA,Canton,125 Hillside Avenue ,,5
+182,182,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+183,183,66801,KS,Emporia,488 Hamilton Road ,,5
+184,184,30114,GA,Canton,125 Hillside Avenue ,,5
+185,185,32034,FL,Fernandina Beach,165 Circle Drive ,,5
+186,186,11413,NY,Springfield Gardens,609 Colonial Drive ,,5
+187,187,30252,GA,Mcdonough,14 Riverside Drive ,,5
+188,188,16066,PA,Cranberry Twp,275 Route 100 ,,5
+189,189,60068,IL,Park Ridge,179 13th Street ,,5
+190,190,23832,VA,Chesterfield,227 Street Road ,,5
+191,191,66801,KS,Emporia,488 Hamilton Road ,,5
+192,192,21060,MD,Glen Burnie,980 Country Club Road ,,5
+193,193,43015,OH,Delaware,22 Linda Lane ,,5
+194,194,20136,VA,Bristow,497 Lake Avenue ,,5
+195,195,30114,GA,Canton,125 Hillside Avenue ,,5
+196,196,6118,CT,East Hartford,406 Linden Avenue ,,5
+197,197,30252,GA,Mcdonough,836 Pleasant Street ,,5
+198,198,34491,FL,Summerfield,254 Washington Avenue ,,5
+199,199,98503,WA,Lacey,128 Forest Drive ,,5
+200,200,60103,IL,Bartlett,156 Surrey Lane ,,5

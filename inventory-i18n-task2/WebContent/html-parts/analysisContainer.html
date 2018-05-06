@@ -1,0 +1,58 @@
+
+<div class="container" id="analysisContainer">
+	<hr>
+	<div class="analysisDiv">
+		<div class="panel panel-default">
+			<div class="panel-heading"><h4>Data Analysis</h4></div>
+			<div class="panel-body" id="analysisDivPanel">
+				<div id="analysisModelTemplate" style="display:none;">
+					<div class="analysisModel">
+						<div class="panel panel-default">
+							<div class="panel-heading">
+								<a href="javascript:this.focus();" data-toggle="popover" title="Transform Data" data-content="">
+									<span class="modelTitle">Name Analysis</span>
+								</a>
+
+								<a href="#analysisModel" class="btn btn-danger btn-xs removeModel pull-right"><span class="glyphicon glyphicon-remove"></span></a>
+								<div class="pull-right" style="margin-right:5px;">
+									<a href="#analysisModel" class="switchModel btn btn-info btn-xs " style="display:none">Switch</a>
+									<div class="dropup">
+									    <button class="btn btn-default dropdown-toggle btn-xs btn-primary" type="button" data-toggle="dropdown">Switch									    <span class="caret"></span></button>
+									    <ul class="dropdown-menu">
+									      <li><a class="changeState">Table</a></li><li class="divider"></li>
+									      <li><a class="changeState">Bar Chart</a></li><li class="divider"></li>
+									      <li><a class="changeState">Line Chart</a></li><li class="divider"></li>
+									      <li><a class="changeState">Pie Chart</a></li>
+									    </ul>
+									  </div>
+								</div>	
+							</div>
+							<div class="panel-body" style="height:250px; overflow-y: auto;">
+								<table class="table table-striped">
+									<thead>
+										<th>Value</th>
+										<th>Count</th>
+									</thead>
+									<tbody>
+									</tbody>
+								</table>
+								<div class="myCanvasBar" style="text-align:center;">
+									<canvas width="300" height="200">
+									</canvas>
+								</div>
+								<div class="myCanvasLine" style="text-align:center;">
+									<canvas width="300" height="200">
+									</canvas>
+								</div>
+								<div class="myCanvasPie" style="text-align:center;">
+									<canvas width="300" height="200">
+									</canvas>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>

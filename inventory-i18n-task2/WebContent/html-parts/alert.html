@@ -1,0 +1,14 @@
+	<div class="alert alert-warning alert-dismissable fade in" id="myAlert">
+		<a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+		<strong>Warning!</strong> <span id="alertMsg">This alert box could indicate a warning that might need attention.</span>
+	</div>
+
+	<script type="text/javascript">
+		
+		function showWarning(msg){
+			console.log("scrollTop: " + top);
+			$('#myAlert').css('top',$('html').scrollTop());
+			$('#alertMsg').html(msg);
+			$('#myAlert').show().delay( 800 ).fadeOut('slow');
+		}
+	</script>

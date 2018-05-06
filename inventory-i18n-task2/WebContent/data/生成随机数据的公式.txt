@@ -1,0 +1,5 @@
+1、生成随机电话号码 
+	=0&TEXT(RAND()*9; "0")&TEXT(RAND()*9; "0")&"-"&TEXT(RAND()*9; "0")&TEXT(RAND()*9; "0")&TEXT(RAND()*9; "0")&"-"&TEXT(RAND()*9; "0")&TEXT(RAND()*9; "0")&TEXT(RAND()*9; "0")&TEXT(RAND()*9; "0")
+
+2、生成随机生日
+	=19&TEXT(RAND()*8+85; "0")&"-"&0&TEXT(RAND()*8+1; "0")&"-"&TEXT(RAND()*18+10; "0")

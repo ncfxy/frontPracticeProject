@@ -1,0 +1,55 @@
+
+#compareList{
+  position: absolute;
+  left:0px;
+  top:72px;
+  width: 300px;
+}
+#myAlert{
+  position:absolute;
+  width:100%;
+  top:0px;
+  text-align: center;
+  font-size: 24px;
+  display: none;
+}
+
+#listTable tr:hover {background-color: #ddd;}
+
+
+.analysisDiv{
+  /*margin-bottom: 50px;*/
+}
+.analysisModel{
+  width:320px;
+  height:320px;
+  margin: 20px;
+  float:left;
+}
+.tab-pane{
+  height:350px;
+  overflow-y: auto;
+  overflow-x: auto;
+}
+
+#tbody-appendix td.editable{
+  /*background-color:red;*/
+}
+
+.canAdd .popover-content{
+  padding: 0px 0px;
+}
+
+.changeState{
+  cursor: pointer;
+}
+
+.table tbody tr td{
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table thead tr th{
+  vertical-align: middle;
+  text-align: center;
+}
