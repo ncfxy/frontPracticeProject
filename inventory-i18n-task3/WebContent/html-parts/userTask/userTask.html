@@ -1,0 +1,526 @@
+
+<style type="text/css">
+    .taskIntroduction li{
+        font-size:20px;
+        text-decoration:underline;
+    }
+</style>
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="userTaskCtrl">
+    <div ng-if="user.type == 'delivery'">
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Your Responsibility (DeliveryMan)
+            </div>
+            <div class="panel-body">
+                <ol  class="taskIntroduction">
+                    <li>Collect stocks from warehouses.</li>
+                    <li>Deliver stocks to customer.</li>
+                    <li>Confirm the sales order.</li>
+                </ol>
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Todo List
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span>Pending Sales Orders
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="saleOrderList.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed" ng-if="saleOrderList.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Create Time</th>
+                                    <th>State</th>
+                                    <th>Customer</th>
+                                    <th>Delivery Man</th>
+                                    <!-- <th>Operations</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat=" x in saleOrderList" style="cursor:pointer;"  data-href="#/salesOrderDetail?id={{ x.orderId }}" ng-click="goToDataHref($event)">
+                                    <td ng-bind="x.orderId"></td>
+                                    <td ng-bind="x.create_time"></td>
+                                    <td ng-bind="x.state"></td>
+                                    <td ng-bind="x.customerName"></td>
+                                    <td ng-bind="x.deliveryName"></td>
+                                    <!-- <td><a ng-if="x.state == 'create'" href="#/orderArrange?id={{ x.orderId }}" ng-click="goToArrange($event)">Arrange</a></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div ng-if="user.type == 'financial' ">
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Your Responsibility (Financial)
+            </div>
+            <div class="panel-body">
+                <ol  class="taskIntroduction">
+                    <li>Pay money for the purchase order.</li>
+                    <li>Receive money from customer and confirm the order</li>
+                </ol>
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Todo List
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span>Pending Purchase Orders
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="purchaseOrderList.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed" ng-if="purchaseOrderList.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Create Time</th>
+                                    <th>Create Person</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat=" x in purchaseOrderList" style="cursor:pointer;"  data-href="#/purchaseOrderDetail?id={{ x.orderId }}" ng-click="goToDataHref($event)">
+                                    <td ng-bind="x.orderId"></td>
+                                    <td ng-bind="x.createTime"></td>
+                                    <td ng-bind="x.createPerson"></td>
+                                    <td ng-bind="x.state"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span>Pending Sales Orders
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="saleOrderList.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed" ng-if="saleOrderList.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Create Time</th>
+                                    <th>State</th>
+                                    <th>Customer</th>
+                                    <th>Delivery Man</th>
+                                    <!-- <th>Operations</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat=" x in saleOrderList" style="cursor:pointer;"  data-href="#/salesOrderDetail?id={{ x.orderId }}" ng-click="goToDataHref($event)">
+                                    <td ng-bind="x.orderId"></td>
+                                    <td ng-bind="x.create_time"></td>
+                                    <td ng-bind="x.state"></td>
+                                    <td ng-bind="x.customerName"></td>
+                                    <td ng-bind="x.deliveryName"></td>
+                                    <!-- <td><a ng-if="x.state == 'create'" href="#/orderArrange?id={{ x.orderId }}" ng-click="goToArrange($event)">Arrange</a></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-if="user.type == 'buyer' ">
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Your Responsibility (Buyer)
+            </div>
+            <div class="panel-body">
+                <ol class="taskIntroduction">
+                    <li><a href="#/plan">Make purchase plans.</a></li>
+                    <li><a href="#/createOrder">Create purchase orders.</a></li>
+                    <li><a href="#/orderList">Confirm the stock price with suppliers.</a></li>
+                    <li><a href="#/orderList">Follow the purchase order and check the order status.</a></li>
+                    <li><a href="#/report?class=purchase">Look at the purchase report</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Todo List
+            </div>
+            <div class="panel-body">
+
+                <div class="panel panel-default col-sm-10" style="margin-top: 20px;padding:0px;margin:30px;" id="hahaha">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span> Waiting confirm price Orders
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="waitingPricePurchaseOrderList.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed" ng-if="waitingPricePurchaseOrderList.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Create Time</th>
+                                    <th>Create Person</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat=" x in waitingPricePurchaseOrderList" style="cursor:pointer;"  data-href="#/purchaseOrderDetail?id={{ x.orderId }}" ng-click="goToDataHref($event)">
+                                    <td ng-bind="x.orderId"></td>
+                                    <td ng-bind="x.createTime"></td>
+                                    <td ng-bind="x.createPerson"></td>
+                                    <td ng-bind="x.state"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default col-sm-10" style="margin-top: 20px;padding:0px;margin:30px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span> Tracking Purchase Orders
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="warehouseEnteringOrder.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed" ng-if="warehouseEnteringOrder.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Create Time</th>
+                                    <th>Create Person</th>
+                                    <th>State</th>
+                                    <th>Receive All Stocks?</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat=" x in warehouseEnteringOrder" style="cursor:pointer;"  data-href="#/purchaseOrderDetail?id={{ x.orderId }}" ng-click="goToDataHref($event)">
+                                    <td ng-bind="x.orderId"></td>
+                                    <td ng-bind="x.createTime"></td>
+                                    <td ng-bind="x.createPerson"></td>
+                                    <td ng-bind="x.state"></td>
+                                    <td ng-if="x.finished" style="background-color:{{x.backgroundColor}};color:white;">true</td>
+                                    <td ng-if="!x.finished" style="background-color:{{x.backgroundColor}};color:white;">false</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-default col-sm-10" style="margin-top: 20px;padding:0px;margin:30px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span> Shortage Inventory
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="shortageStocks.length <= 0">No shortage Stocks</p>
+                        <table class="table table-hover table-condensed" ng-if="shortageStocks.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Warehouse</th>
+                                    <th>Classification</th>
+                                    <th>Code</th>
+                                    <th>Maker</th>
+                                    <th>Detail</th>
+                                    <th>Price</th>
+                                    <th>In Stock</th>
+                                    <th>Unit</th>
+                                    <th>Warning Line</th>
+                                    <th>Purchase</th>
+                                    <th></th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat="x in shortageStocks" data-href="stock.html?id={{ x.stock_id }}" ng-click="detail($event)" style="cursor: pointer;background-color:{{x.backgroundColor}}">
+                                    <td>{{ x.name }}</td>
+                                    <td>{{ x.text }}</td>
+                                    <td>{{ x.code }}</td>
+                                    <td>{{ x.maker }}</td>
+                                    <td>{{ x.detail }}</td>
+                                    <td>{{ x.price }}</td>
+                                    <td>{{ x.balance }}</td>
+                                    <td>{{ x.unit }}</td>
+                                    <td>{{ x.warning_line }}</td>
+                                    <td>{{purchaseItems[x.stock_id]}}</td>
+                                    <td style="background-color:white">
+                                        <a class="btn btn-primary" name="" ng-click="addToProcurement($event)"><span class="glyphicon glyphicon-plus"></span></a>
+                                        <a class="btn btn-danger" name="" ng-click="removeFromProcurement($event)"><span class="glyphicon glyphicon-minus"></span></a>
+                                    </td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+    <div ng-if="user.type == 'salesman'">
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Your Responsibility (Salesman)
+            </div>
+            <div class="panel-body">
+                <ol  class="taskIntroduction">
+                    <li><a href="#/plan">Input Sales Plan.</a></li>
+                    <li><a href="#/contracts">Visit customers and sign contracts with them.</a></li>
+                    <li><a href="#/createOrder">Create sale orders according to existing contracts.</a></li>
+                    <li><a href="#/orderList">Arrange the exact stocks for sale order</a></li>
+                    <li><a href="#/orderList">Follow the sale order and check the order status.</a></li>
+                    <li><a href="#/report?class=sales">Look at the sales report</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Todo List
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span>Nearest Valid Contracts
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="contracts.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed table-bordered" ng-if="contracts.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Contract ID</th>
+                                    <th>Customer Name</th>
+                                    <th>Salesman Name</th>
+                                    <th>Type</th>
+                                    <th>Sign Time</th>
+                                    <th>Nearest Delivery Time</th>
+                                    <th>Periodic</th>
+                                    <th>Validity Time</th>
+                                    <th>State</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat="x in contracts" style="cursor: pointer;" data-href="sales.html#/contractDetail?id={{ x.contractId }}" ng-click="goToDataHref($event)">
+                                    <td>{{ x.contractId }}</td>
+                                    <td>{{ x.customerName }}</td>
+                                    <td>{{ x.salesmanName }}</td>
+                                    <td>{{ x.contractType }}</td>
+                                    <td>{{ x.sign_time }}</td>
+                                    <td>{{ x.delivery_time }}</td>
+                                    <td>{{ x.periodic }} days</td>
+                                    <td>{{ x.validity_time }}</td>
+                                    <td>{{ x.state }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span>Waiting Arranged Orders
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="waitingArrangeSaleOrderList.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed" ng-if="waitingArrangeSaleOrderList.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Create Time</th>
+                                    <th>State</th>
+                                    <th>Customer</th>
+                                    <th>Delivery Man</th>
+                                    <!-- <th>Operations</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat=" x in waitingArrangeSaleOrderList" style="cursor:pointer;"  data-href="#/salesOrderDetail?id={{ x.orderId }}" ng-click="goToDataHref($event)">
+                                    <td ng-bind="x.orderId"></td>
+                                    <td ng-bind="x.create_time"></td>
+                                    <td ng-bind="x.state"></td>
+                                    <td ng-bind="x.customerName"></td>
+                                    <td ng-bind="x.deliveryName"></td>
+                                    <!-- <td><a ng-if="x.state == 'create'" href="#/orderArrange?id={{ x.orderId }}" ng-click="goToArrange($event)">Arrange</a></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span>Tracking Sale Orders
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="warehouseExitingOrderList.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed" ng-if="warehouseExitingOrderList.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Create Time</th>
+                                    <th>State</th>
+                                    <th>Customer</th>
+                                    <th>Delivery Man</th>
+                                    <!-- <th>Operations</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat=" x in warehouseExitingOrderList" style="cursor:pointer;"  data-href="#/salesOrderDetail?id={{ x.orderId }}" ng-click="goToDataHref($event)">
+                                    <td ng-bind="x.orderId"></td>
+                                    <td ng-bind="x.create_time"></td>
+                                    <td ng-bind="x.state"></td>
+                                    <td ng-bind="x.customerName"></td>
+                                    <td ng-bind="x.deliveryName"></td>
+                                    <!-- <td><a ng-if="x.state == 'create'" href="#/orderArrange?id={{ x.orderId }}" ng-click="goToArrange($event)">Arrange</a></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+
+
+    <div ng-if="user.type == 'warehouse'">
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Your Responsibility (Warehouse Keeper)
+            </div>
+            <div class="panel-body">
+                <ol  class="taskIntroduction">
+                    <li><a href="#/inventoryInspection">Manage warehouse and inspect inventory.</a></li>
+                    <li><a href="#/warehouseRecordList?type=Entry">Operate warehouse entry when the suppliers deliver stocks to warehouse.</a></li>
+                    <li><a href="#/warehouseRecordList?type=Entry">Operate warehouse exit when the deliveryman pick up the stocks according to sale order.</a></li>
+                    <li><a href="#/">Inventory counting different class stocks periodically.</a></li>
+                    <li><a href="#/">Submit loss report if some stocks broken.</a></li>
+                </ol>
+            </div>
+        </div>
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Todo List
+            </div>
+            <div class="panel-body">
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span>Warehouse Entry Pending Task
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="warehouseEnteringOrder.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed" ng-if="warehouseEnteringOrder.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Create Time</th>
+                                    <th>Create Person</th>
+                                    <th>State</th>
+                                    <th>Receive All Stocks?</th>
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat=" x in warehouseEnteringOrder" style="cursor:pointer;"  data-href="#/purchaseOrderDetail?id={{ x.orderId }}" ng-click="goToDataHref($event)">
+                                    <td ng-bind="x.orderId"></td>
+                                    <td ng-bind="x.createTime"></td>
+                                    <td ng-bind="x.createPerson"></td>
+                                    <td ng-bind="x.state"></td>
+                                    <td ng-if="x.finished" style="background-color:{{x.backgroundColor}};color:white;">true</td>
+                                    <td ng-if="!x.finished" style="background-color:{{x.backgroundColor}};color:white;">false</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span>Warehouse Exit Pending Task
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="warehouseExitingOrderList.length <= 0">No pending task</p>
+                        <table class="table table-hover table-condensed" ng-if="warehouseExitingOrderList.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Order Id</th>
+                                    <th>Create Time</th>
+                                    <th>State</th>
+                                    <th>Customer</th>
+                                    <th>Delivery Man</th>
+                                    <!-- <th>Operations</th> -->
+                                </tr>
+                            </thead>
+                            <tbody id="tbody-stocks">
+                                <tr ng-repeat=" x in warehouseExitingOrderList" style="cursor:pointer;"  data-href="#/salesOrderDetail?id={{ x.orderId }}" ng-click="goToDataHref($event)">
+                                    <td ng-bind="x.orderId"></td>
+                                    <td ng-bind="x.create_time"></td>
+                                    <td ng-bind="x.state"></td>
+                                    <td ng-bind="x.customerName"></td>
+                                    <td ng-bind="x.deliveryName"></td>
+                                    <!-- <td><a ng-if="x.state == 'create'" href="#/orderArrange?id={{ x.orderId }}" ng-click="goToArrange($event)">Arrange</a></td> -->
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <span class="glyphicon glyphicon-pencil"></span> Shortage Inventory in My Warehouse
+                    </div>
+                    <div class="panel-body">
+                        <p class="text-center" ng-if="shortageStocks.length <= 0">No shortage Stocks</p>
+                        <table class="table table-hover table-condensed" ng-if="shortageStocks.length > 0">
+                            <thead>
+                                <tr>
+                                    <th>Warehouse</th>
+                                    <th>Classification</th>
+                                    <th>Code</th>
+                                    <th>Maker</th>
+                                    <th>Detail</th>
+                                    <th>Price</th>
+                                    <th>In Stock</th>
+                                    <th>Unit</th>
+                                    <th>Warning Line</th>
+                                </tr>
+                            </thead>
+                            <style type="text/css">
+                                #tbody-stocks123 td{
+                                    color:white;
+                                }
+                            </style>
+                            <tbody id="tbody-stocks123">
+                                <tr ng-repeat="x in shortageStocks" data-href="#/stockDetail?id={{ x.stock_id }}" ng-click="goToDataHref($event)" style="cursor: pointer;background-color:{{x.backgroundColor}}">
+                                    <td>{{ x.name }}</td>
+                                    <td>{{ x.text }}</td>
+                                    <td>{{ x.code }}</td>
+                                    <td>{{ x.maker }}</td>
+                                    <td>{{ x.detail }}</td>
+                                    <td>{{ x.price }}</td>
+                                    <td>{{ x.balance }}</td>
+                                    <td>{{ x.unit }}</td>
+                                    <td>{{ x.warning_line }}</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+
+</div>
+
+

@@ -1,0 +1,47 @@
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="itemFormCtrl">
+    <div class="form">
+        <div class="form-group">
+            <div>
+                <label>Kind</label>
+            </div>
+            <select class="form-control" name="kind" ng-model='chooseKind' ng-options="x.text for x in kinds" ng-change="kindChange()"></select>
+
+        </div>
+        <div class="form-group">
+            <label>Code(Auto Generate)</label>
+            <input type="text" class="form-control" name="code" ng-model="code" disabled>
+        </div>
+        <div class="form-group">
+            <div>
+                <label>Maker</label>
+            </div>
+            <select class="form-control" name="maker" ng-model='maker' ng-options="x.maker for x in makers">
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Detail</label>
+            <input type="text" class="form-control" name="detail" ng-model="detail" >
+        </div>
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" class="form-control" name="price" ng-model="price" >
+        </div>
+        <div class="form-group">
+            <label>Unit</label>
+            <select class="form-control" name="unit" ng-model='unit'>
+                <option value="Pcs" selected>Pcs</option>
+            </select>
+        </div>
+
+
+
+        <button type="submit" class="btn btn-success" id="update" ng-click="addItem($event)">
+            <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Add
+        </button>
+    </div>
+</div>
+
+
+
+<!-- <script src="js/index.js"></script> -->

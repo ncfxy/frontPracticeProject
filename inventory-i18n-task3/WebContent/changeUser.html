@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html manifest="test.manifest">
+<head>
+<script src="https://cdn.bootcss.com/jquery/2.2.4/jquery.min.js"></script>
+<link href="https://cdn.bootcss.com/bootstrap/3.3.6/css/bootstrap.css" rel="stylesheet" />
+<script src="https://cdn.bootcss.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+<script src="https://cdn.bootcss.com/alasql/0.2.6/alasql.min.js"></script>
+<script src="https://cdn.bootcss.com/angular.js/1.4.8/angular.min.js"></script>
+<script src="js/db.js"></script>
+<script src="js/util.js"></script>
+<meta charset="utf-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width">
+<title>COMPANY</title>
+
+<style type="text/css">
+  .table tbody tr td{
+      vertical-align: middle;
+      text-align: center;
+    }
+
+    .table thead tr th{
+      vertical-align: middle;
+      text-align: center;
+    }
+
+</style>
+
+</head>
+<body  ng-app="userApp">
+  <nav class="navbar navbar-default">
+      <div class="container">
+        <!-- Brand and toggle get grouped for better mobile display -->
+        <div class="navbar-header">
+          <button type="button" class="navbar-toggle collapsed"
+            data-toggle="collapse" data-target="#navbar-collapse">
+            <span class="sr-only">Toggle navigation</span> <span
+              class="icon-bar"></span> <span class="icon-bar"></span> <span
+              class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand">COMPANY</a>
+        </div>
+
+        <!-- Collect the nav links, forms, and other content for toggling -->
+        <div class="collapse navbar-collapse" id="navbar-collapse">
+          <ul class="nav navbar-nav">
+            <li><a href="index.html">Inventory Management</a></li>
+          </ul>
+          <ul class="nav navbar-nav navbar-right">
+            <li class="dropdown"><a href="#" class="dropdown-toggle"
+              data-toggle="dropdown"><span class="glyphicon glyphicon-cog"></span>
+                Settings <span class="caret"></span></a>
+              <ul class="dropdown-menu">
+                <li><a onclick="window.location.reload(true);"><span
+                    class="glyphicon glyphicon-refresh"></span> Reload</a></li>
+                <li><a onclick="DB.init();"><span
+                    class="glyphicon glyphicon-repeat"></span> Init DB</a></li>
+                <li role="separator" class="divider"></li>
+                <li><a onclick="DB.remove();"><span
+                    class="glyphicon glyphicon-trash"></span> Delete DB</a></li>
+              </ul></li>
+          </ul>
+        </div>
+        <!-- /.navbar-collapse -->
+      </div>
+      <!-- /.container-fluid -->
+    </nav>
+
+  <script src="js/common.js"></script>
+  <h1 style="text-align:center;">Users List</h1>
+  <h4 style="text-align:center;color:red;">You can switch user by clicking the line.</h4>
+  <div class="container" ng-controller="userCtrl">
+    <table class="table table-hover table-bordered">
+      <thead>
+        <tr>
+          <th>User ID</th>
+          <th>Password</th>
+          <th>Name</th>
+          <th>User Type</th>
+          <th>Belong Warehouse</th>
+        </tr>
+      </thead>
+      <tbody id="tbody-stocks">
+        <tr ng-repeat=" x in users" style="cursor:pointer;background-color: {{x.backgroundColor}}" ng-click="switchUser(x)">
+          <td>{{ x.user_id }}</td>
+          <td>{{ x.password }}</td>
+          <td>{{ x.name }}</td>
+          <td>{{ x.type }}</td>
+          <td>{{ x.warehouse_name }}</td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+
+
+  <script type="text/javascript">
+    var userApp = angular.module("userApp", []);
+    userApp.controller('userCtrl', function($scope) {
+      $scope.users = alasql("SELECT * FROM users");
+      var importantUser = ['buyer1', 'salesman1', 'delivery1', 'keeper1', 'admin', 'financial1'];
+
+      $scope.find = function(user_id){
+        for(var i = 0;i <  importantUser.length;i++){
+          if(user_id == importantUser[i])return true;
+        }
+        return false;
+      }
+      for(var i = 0;i < $scope.users.length;i++){
+        $scope.users[i].warehouse_name = alasql("SELECT * FROM whouse WHERE id = ?",[$scope.users[i].belong_warehouse])[0].name;
+        if($scope.find($scope.users[i].user_id)){
+          $scope.users[i].backgroundColor = "#F1F1F1";
+        }
+      }
+
+      $scope.switchUser = function(user){
+        localStorage.setItem('user', JSON.stringify(user));
+        alert("user swith to " + user.user_id);
+      }
+
+
+    });
+  </script>
+
+</body>
+</html>

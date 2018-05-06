@@ -1,0 +1,74 @@
+
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="salesOrderListCtrl">
+
+    <form class="form-inline text-center">
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input name="customerName" type="text"
+            class="form-control" placeholder="Name" ng-model="customerName">
+        </div>
+        <div class="form-group">
+            <label>Create Time Start</label>
+            <input name="startTime" type="date"
+            class="form-control" ng-model="startTime">
+        </div>
+        <div class="form-group">
+            <label>Create Time End</label>
+            <input name="endTime" type="date"
+            class="form-control" ng-model="endTime">
+        </div>
+
+        <div class="form-group">
+            <label>State</label>
+            <select name="state" class="form-control" ng-model="state" ng-options="x for x in states" ng-change="search()">
+            <!-- <select name="state" class="form-control" ng-model="state"  ng-change="search()">
+                <option value="All" selected>All</option>
+                <option value="create">create</option>
+                <option value="Arranged">Arranged</option> -->
+                <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" ng-click="search()">
+            <span class="glyphicon glyphicon-search"></span> Search
+        </button>
+
+    </form>
+
+    <hr>
+    <div class="clearfix" style="margin: 10px 0;" ng-if="user.type == 'salesman'">
+        <a href="#/createOrder" class="btn btn-sm btn-success pull-right">
+            <span class="glyphicon glyphicon-plus"></span> New
+        </a>
+    </div>
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Order Id</th>
+                <th>Create Time</th>
+                <th>State</th>
+                <th>Customer</th>
+                <th>Delivery Man</th>
+                <!-- <th>Operations</th> -->
+            </tr>
+        </thead>
+        <tbody id="tbody-stocks">
+            <tr ng-repeat=" x in orderList" style="cursor:pointer;"  data-href="#/salesOrderDetail?id={{ x.orderId }}" ng-click="detail($event)">
+                <td ng-bind="x.orderId"></td>
+                <td ng-bind="x.create_time"></td>
+                <td ng-bind="x.state"></td>
+                <td ng-bind="x.customerName"></td>
+                <td ng-bind="x.deliveryName"></td>
+                <!-- <td><a ng-if="x.state == 'create'" href="#/orderArrange?id={{ x.orderId }}" ng-click="goToArrange($event)">Arrange</a></td> -->
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+
+<script type="text/javascript">
+    $('.table').on('click', 'tbody > tr', function() {
+        window.location = $(this).attr('data-href');
+    });
+</script>

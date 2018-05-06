@@ -1,0 +1,74 @@
+<style type="text/css">
+
+    tbody > tr:hover{
+        border-style:solid;
+        border-width:2px;
+    }
+</style>
+
+
+    <div class="container table-responsive" style="height:100%;width:100%;" ng-controller="inventoryInspectionCtrl">
+        <form class="form-inline text-center">
+            <div class="form-group">
+                <label>Warehouse</label>
+                <select name="q1" class="form-control" ng-model="q1" ng-options="x.warehouseName for x in warehouseChoice" ng-change="search()" id="q1">
+                    <!-- <option value="0" selected>All</option> -->
+                    <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Classification</label>
+                <select name="q2" class="form-control" ng-model="q2" ng-options="x.classificationName for x in classificationChoice" ng-change="search()">
+                    <!-- <option value="0">All</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Code</label> <input name="q3" type="text"
+                class="form-control" placeholder="Prefix Search" ng-model="inputCode">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="search()">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </button>
+        </form>
+        <hr>
+
+        <!-- <div class="clearfix" style="margin: 10px 0;">
+            <a href="stock-form.html" class="btn btn-sm btn-success pull-right">
+                <span class="glyphicon glyphicon-plus"></span> New
+            </a>
+        </div> -->
+        <table class="table table-hover table-condensed">
+            <thead>
+                <tr>
+                    <th>Warehouse</th>
+                    <th>Classification</th>
+                    <th>Code</th>
+                    <th>Maker</th>
+                    <th>Detail</th>
+                    <th>In Stock</th>
+                    <th>Unit</th>
+                    <th>Warning Line</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-stocks">
+                <tr ng-repeat="x in records" data-href="warehouse.html#/stockDetail?id={{ x.id }}" ng-click="goToDataHref($event)" style="cursor: pointer;background-color:{{x.backgroundColor}}" >
+                    <td>{{ x.name }}</td>
+                    <td>{{ x.text }}</td>
+                    <td>{{ x.code }}</td>
+                    <td>{{ x.maker }}</td>
+                    <td>{{ x.detail }}</td>
+                    <td>{{ x.balance }}</td>
+                    <td>{{ x.unit }}</td>
+                    <td>{{ x.warning_line }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+<!-- <script type="text/javascript">
+    $('.table').on('click', 'tbody > tr', function() {
+        window.location = $(this).attr('data-href');
+    });
+</script> -->
+

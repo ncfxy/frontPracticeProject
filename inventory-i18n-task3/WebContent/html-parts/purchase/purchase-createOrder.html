@@ -1,0 +1,65 @@
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="ordersCtrl">
+    <div 	style="text-align:center;">
+        <!-- <h1 ng-if="hasRecord">You don't select any items</h1> -->
+        <h1>Purchase Items List</h1>
+    </div>
+    <div ng-repeat="(maker,value) in planDisplay">
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> {{ maker }}
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-condensed">
+                    <thead>
+                        <tr>
+                            <th>Warehouse</th>
+                            <th>Classification</th>
+                            <th>Code</th>
+                            <th>Maker</th>
+                            <th>Detail</th>
+                            <th>In Stock</th>
+                            <!-- <th>Sum Price</th> -->
+                            <th style="width:30px;">Purchase</th>
+                            <th></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in value.data" data-href="stock.html?id={{ row.id }}">
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.text }}</td>
+                            <td>{{ row.code }}</td>
+                            <td>{{ row.maker }}</td>
+                            <td>{{ row.detail }}</td>
+                            <td>{{ row.balance }}</td>
+                            <!-- <td>{{ row.price * row.chooseAmount }}</td> -->
+                            <td>
+                                <input type="number" min="0" class="form-control  input-sm text-center" ng-model="row.chooseAmount" ng-blur="changeChooseAmount(row)">
+                            </td>
+                            <td>
+                                <a class="btn btn-primary" name="" ng-click="addToProcurement($event)"><span class="glyphicon glyphicon-plus"></span></a>
+                                <a class="btn btn-danger" name="" ng-click="removeFromProcurement($event)"><span class="glyphicon glyphicon-minus"></span></a>
+                            </td>
+                        </tr>
+                        <!-- <tr>
+                            <td>Total</td>
+                            <td></td><td></td><td></td><td></td><td><strong>{{value.total}}</strong></td>
+                            <td></td><td></td>
+                        </tr> -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <!-- <h1>TotalCost : <span style="color:red">{{costTotal}}</span> </h1> -->
+
+        <div class="text-center">
+            <a class="btn btn-primary btn-primary text-center" href="#/realTimePurchase"><h4>Import From Purchase Plan</h4></a>
+            <a class="btn btn-primary btn-primary text-center" href="#/allStocks"><h4>Add From All Stocks</h4></a>
+            <a class="btn btn-primary btn-success text-center" ng-click="createOrder()" ng-if="!hasRecord"><h4>Create Purchase Order</h4></a>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,92 @@
+
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="contractsCtrl">
+
+    <form class="form-inline text-center">
+        <div class="form-group">
+            <label>Customer Name</label>
+            <input name="customerName" type="text"
+            class="form-control" placeholder="Name" ng-model="customerName">
+        </div>
+        <div class="form-group">
+            <label>Type</label>
+            <select name="searchType" class="form-control" ng-model="searchType"  ng-change="search()">
+                <option value="All" selected>All</option>
+                <option value="once">once</option>
+                <option value="periodic">periodic</option>
+                <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Delivery Time Start</label>
+            <input name="startTime" type="date"
+            class="form-control" ng-model="startTime">
+        </div>
+        <div class="form-group">
+            <label>Delivery Time End</label>
+            <input name="endTime" type="date"
+            class="form-control" ng-model="endTime">
+        </div>
+
+        <div class="form-group">
+            <label>State</label>
+            <select name="state" class="form-control" ng-model="state"  ng-change="search()">
+                <option value="All" selected>All</option>
+                <option value="valid">valid</option>
+                <option value="expired">expired</option>
+                <option value="abolished">abolished</option>
+                <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+            </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary" ng-click="search()">
+            <span class="glyphicon glyphicon-search"></span> Search
+        </button>
+
+    </form>
+
+    <hr>
+
+    <div class="clearfix" style="margin: 10px 0;">
+        <a href="#/contractForm" class="btn btn-sm btn-success pull-right">
+            <span class="glyphicon glyphicon-plus"></span> New
+        </a>
+    </div>
+    <table class="table table-hover table-condensed table-bordered">
+        <thead>
+            <tr>
+                <th>Contract ID</th>
+                <th>Customer Name</th>
+                <th>Salesman Name</th>
+                <th>Type</th>
+                <th>Sign Time</th>
+                <th>Nearest Delivery Time</th>
+                <th>Periodic</th>
+                <th>Validity Time</th>
+                <th>State</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-stocks">
+            <tr ng-repeat="x in contracts" style="cursor: pointer;" data-href="sales.html#/contractDetail?id={{ x.contractId }}">
+                <td>{{ x.contractId }}</td>
+                <td>{{ x.customerName }}</td>
+                <td>{{ x.salesmanName }}</td>
+                <td>{{ x.contractType }}</td>
+                <td>{{ x.sign_time }}</td>
+                <td>{{ x.delivery_time }}</td>
+                <td>{{ x.periodic }} days</td>
+                <td>{{ x.validity_time }}</td>
+                <td>{{ x.state }}</td>
+            </tr>
+        </tbody>
+    </table>
+
+
+</div>
+
+<script type="text/javascript">
+    $('.table').on('click', 'tbody > tr', function() {
+        window.location = $(this).attr('data-href');
+    });
+</script>
+

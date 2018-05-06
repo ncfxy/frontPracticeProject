@@ -1,0 +1,143 @@
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="orderDetailCtrl">
+
+    <div class="panel panel-default" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-th-list"></span> Order Introduction
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-condensed table-bordered">
+                <tbody>
+                    <tr>
+                        <th style="width:100px;">Order Id</th>
+                        <td style="text-align:left">{{order.id}}</td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td style="text-align:left">{{order.state}}</td>
+                    </tr>
+                    <tr>
+                        <th>Operations</th>
+                        <td style="text-align:left">
+                            <table class="table table-hover table-condensed" style="text-align: left;">
+                                <thead><tr><th>Operator Name</th><th>Operation</th><th>Operation Time</th></tr></thead>
+                                <tbody>
+                                    <tr ng-repeat="x in operations">
+                                        <td ng-bind="x.name"></td>
+                                        <td ng-if="!x.href">{{x.operation}}</td>
+                                        <td ng-if="x.href"><a href="{{x.href}}">{{x.operation}}</a></td>
+                                        <td ng-bind="x.operation_time"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="height:6em;">
+                            <div class="stepInfo">
+                                <ul>
+                                    <li ng-repeat="i in lines" style="width:{{gap}}%;background:{{stepColors[i]}}"></li>
+                                </ul>
+                                <div class="stepIco" ng-repeat="(index,step) in steps" style="background:{{stepColors[index]}};left:{{0+gap*index}}%;">{{index+1}}
+                                    <div class="stepText" id="createText" style="color:{{stepColors[index]}};">{{step}}</div>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <h2>Order Details</h2>
+
+    <div ng-repeat="(maker,value) in planDisplay" >
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-shopping-cart"></span> {{ maker }}
+                <div class="pull-right" ng-if="user.type == 'warehouse' && (order.state == 'Paid' || order.state == 'Warehouse Entering') ">
+                    <a class="btn btn-success btn-xs" href="#/warehouseEntryCreate?id={{orderId}}&amp;maker={{maker}}&amp;type=Entry"><span class="	glyphicon glyphicon-plus"></span>Warehouse Entry</a>
+                    <a class="btn btn-primary btn-xs" data-toggle="modal" ng-click="printThis($event)"><span class="	glyphicon glyphicon-print"></span>Print</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <h2 class="text-center" ng-if="user.type == 'warehouse'">
+                    <strong>{{ maker }}'s</strong> Stock list in Purchase Order(<span style="text-decoration:underline;">{{orderId}}</span>)
+                </h2>
+                <table class="table table-hover table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Warehouse</th>
+                            <th>Classification</th>
+                            <th>Code</th>
+                            <th>Maker</th>
+                            <th>Detail</th>
+                            <th>In Stock</th>
+                            <th>Sale Price</th>
+                            <th style="width:120px;">Purchase Price</th>
+                            <th>Purchase Count</th>
+                            <th>Warehouse Received</th>
+
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="row in value.data" data-href="stock.html?id={{ row.id }}">
+                            <td>{{ row.name }}</td>
+                            <td>{{ row.text }}</td>
+                            <td>{{ row.code }}</td>
+                            <td>{{ row.maker }}</td>
+                            <td>{{ row.detail }}</td>
+                            <td>{{ row.balance }}</td>
+                            <td>{{ row.price }}</td>
+                            <td ng-if="order.state != 'create'" ng-bind="row.purchasePrice"></td>
+                            <td ng-if="order.state == 'create'"><input ng-model="row.purchasePrice" type="number" min="0" class="form-control  input-sm text-center" ng-blur="priceChange(row)"></td>
+                            <td>{{ row.chooseAmount }}</td>
+                            <td ng-if="row.finished" style="color:green;">{{ row.receivedAmount }}</td>
+                            <td ng-if="!row.finished" style="color:red;">{{ row.receivedAmount }}</td>
+
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <div style="margin-right: 40px;text-align:right;">
+        <h3 style="font-weight:bold;">Total Cost: {{totalCost}}</h3>
+    </div>
+
+    <div class="text-center">
+        <a class="btn btn-primary btn-success text-center" ng-click="confirmOrder()" ng-if="order.state == 'create' && user.type == 'buyer'"><h4>Confirm Purchase Prices</h4></a>
+        <a class="btn btn-primary btn-success text-center" ng-click="payOrder()" ng-if="order.state == 'Confirmed Purchase Price' && user.type == 'financial'"><h4>Pay</h4></a>
+        <a class="btn btn-primary btn-success text-center" ng-click="finishOrder()" ng-if="order.state == 'Warehouse Entering' && user.type == 'buyer'"><h4>Finish Order</h4></a>
+        <a class="btn btn-primary btn-danger text-center" ng-click="deleteOrder()" ng-if="user.type == 'admin'"><h4>Delete This Order</h4></a>
+    </div>
+
+    <div class="modal fade" id="printModal" role="dialog">
+        <div class="modal-dialog modal-md">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Print Order Preview</h4>
+                </div>
+                <div class="modal-body container-fluid">
+
+                </div>
+                <div class="modal-footer" style="text-align:center;">
+                    <button type="button" class="btn btn-success"  ng-click="importData($event)">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Print
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+<!-- <script src="js/index.js"></script> -->

@@ -1,0 +1,66 @@
+
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="warehouseEntryDetailCtrl">
+
+    <div class="panel panel-default" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-pencil"></span> Warehouse Entry report
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-condensed table-bordered">
+                <tbody>
+                    <tr>
+                        <th style="width:100px;">Report Id</th>
+                        <td style="text-align:left">{{recordInfo.id}}</td>
+                    </tr>
+                    <tr>
+                        <th>Order Id</th>
+                        <td style="text-align:left"><a href="warehouse.html#/purchaseOrderDetail?id={{recordInfo.order_id}}">{{recordInfo.order_id}}</a></td>
+                    </tr>
+                    <tr>
+                        <th>Entry Time</th>
+                        <td style="text-align:left">{{recordInfo.entry_time}}</td>
+                    </tr>
+                    <tr>
+                        <th>Operator</th>
+                        <td style="text-align:left">{{recordInfo.name}}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="panel panel-default" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-pencil"></span> {{ maker }}
+
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th>Warehouse</th>
+                        <th>Classification</th>
+                        <th>Code</th>
+                        <th>Maker</th>
+                        <th>Detail</th>
+                        <th ng-if="createType == 'Entry'">Receive Amount</th>
+                        <th ng-if="createType == 'Exit'">Exit Amount</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="row in planDisplay[maker].data" data-href="stock.html?id={{ row.id }}">
+                        <td>{{ row.name }}</td>
+                        <td>{{ row.text }}</td>
+                        <td>{{ row.code }}</td>
+                        <td>{{ row.maker }}</td>
+                        <td>{{ row.detail }}</td>
+                        <td ng-if="createType == 'Entry'">{{ row.receiveAmount }}</td>
+                        <td ng-if="createType == 'Exit'">{{ row.exitAmount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+</div>

@@ -1,0 +1,99 @@
+
+<style>
+.table tbody tr td {
+    text-align: left;
+}
+.table thead tr th {
+    text-align: left;
+}
+</style>
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="stockDetailCtrl">
+
+    <div style="width:80%;text-align:center;margin:auto;">
+        <div style="text-align:center;">
+            <img style="max-width:480px;" width="50%" src="img/{{stockInfo.item}}.jpg" alt="No Picture, Please Upload">
+        </div>
+        <div style="margin-top:20px;">
+            <table class="table table-bordered">
+                <tbody>
+                    <tr>
+                        <th style="width:25%;">Warehouse</th>
+                        <td id="code">{{stockInfo.name}}</td>
+                    </tr>
+                    <tr>
+                        <th style="width:25%;">Item Code</th>
+                        <td id="code">{{stockInfo.code}}</td>
+                    </tr>
+                    <tr>
+                        <th>Classification</th>
+                        <td id="code">{{stockInfo.text}}</td>
+                    </tr>
+                    <tr>
+                        <th>Maker</th>
+                        <td id="maker">{{stockInfo.maker}}</td>
+                    </tr>
+                    <tr>
+                        <th>Detail</th>
+                        <td id="detail">{{stockInfo.detail}}</td>
+                    </tr>
+                    <tr>
+                        <th>Unit Price</th>
+                        <td id="price">{{stockInfo.price}}</td>
+                    </tr>
+                    <tr>
+                        <th>Unit</th>
+                        <td id="unit">{{stockInfo.unit}}</td>
+                    </tr>
+                    <tr>
+                        <th>Balance</th>
+                        <td id="balance">{{stockInfo.balance}}</td>
+                    </tr>
+                    <tr>
+                        <th>Warning Line</th>
+                        <td>
+                            <div class="input-group" ng-if="user.type == 'warehouse'">
+                                <input  type="text" class="form-control" ng-model="stockInfo.warning_line"  ng-keypress="updateEnterKey($event)">
+                                <div class="input-group-btn">
+                                  <button class="btn btn-success" type="submit" id="update" ng-click="updateWarningLine($event)">
+                                    <i class="glyphicon glyphicon-ok"></i> Update
+                                  </button>
+                                </div>
+                            </div>
+                            <div ng-if="user.type != 'warehouse'">
+                                {{stockInfo.warning_line}}
+                            </div>
+                        </td>
+                        <!-- <td id="warningLine" ng-dblclick="editWarningLine($event)">{{stockInfo.warning_line}}</td> -->
+                    </tr>
+
+                </tbody>
+            </table>
+
+        </div>
+        <h4 class="text-left">History</h4>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Date</th>
+                    <th>Amount</th>
+                    <th>Balance</th>
+                    <th>Comment</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-transs">
+                <tr ng-repeat='tran in trans'>
+                    <td ng-bind='tran.date'></td>
+                    <td ng-bind='tran.qty'></td>
+                    <td ng-bind='tran.balance'></td>
+                    <td ng-bind='tran.memo'></td>
+                </tr>
+
+            </tbody>
+        </table>
+
+    </div>
+
+
+</div>
+
+<!-- <script src="js/index.js"></script> -->

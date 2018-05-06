@@ -1,0 +1,114 @@
+	
+	
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="statisticPurchaseDetailCtrl">
+	<div class="panel panel-default" style="margin-top: 20px;">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-pencil"></span> {{title}}
+			<div class="pull-right">
+				<a class="btn btn-success btn-xs" ng-click="export($event)"><span class="	glyphicon glyphicon-export"></span>export</a>
+				<a class="btn btn-primary btn-xs" data-toggle="modal" ng-click="printThis($event)"><span class="	glyphicon glyphicon-print"></span>Print</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<h1 class="text-center">{{title}}</h1>
+			<table class="table table-hover table-condensed table-bordered" ng-if="period == 'Monthly'">
+				<thead>
+					<tr>
+						<th>Warehouse</th>
+						<th>Classification</th>
+						<th>Code</th>
+						<th>Maker</th>
+						<th>Detail</th>
+						<th ng-if="class == 'purchase'">Purchase Order</th>
+						<th ng-if="class == 'purchase'">Purchase Price</th>
+						<th ng-if="class == 'purchase'">Purchase Amount</th>
+						<th ng-if="class == 'purchase'">Purchase Time</th>
+						<th ng-if="class == 'sales'">Sales Order</th>
+						<th ng-if="class == 'sales'">Sales Price</th>
+						<th ng-if="class == 'sales'">Sales Amount</th>
+						<th ng-if="class == 'sales'">Sales Time</th>
+					</tr>
+				</thead>
+				<tbody id="tbody-stocks">
+					<tr ng-repeat="x in stocks" data-href="#/itemDetail?id={{ x.id }}">
+						<td>{{ x.name }}</td>
+						<td>{{ x.text }}</td>
+						<td>{{ x.code }}</td>
+						<td>{{ x.maker }}</td>
+						<td>{{ x.detail }}</td>
+						<td ng-if="class == 'purchase'"><a href="#/purchaseOrderDetail?id={{x.orderId}}">{{ x.orderId }}</a></td>
+						<td ng-if="class == 'sales'"><a href="#/salesOrderDetail?id={{x.orderId}}">{{ x.orderId }}</a></td>
+						<td>{{ x.price }}</td>
+						<td>{{ x.amount }}</td>
+						<td>{{ x.time }}</td>
+					</tr>
+					<tr>
+						<td colspan="5" style="font-weight:bold;font-size:20px;">Total Amount: {{sumAmount}}</td>
+						<td colspan="4" style="font-weight:bold;font-size:20px;">Total Cost: {{totalCost}}</td>
+					</tr>
+				</tbody>
+			</table>
+
+			<table class="table table-hover table-condensed table-bordered" ng-if="period == 'Yearly'">
+				<thead>
+					<tr>
+						<th>Month</th>
+						<th>Warehouse</th>
+						<th>Classification</th>
+						<th>Code</th>
+						<th>Maker</th>
+						<th>Detail</th>
+						<th ng-if="class == 'purchase'">Purchase Order</th>
+						<th ng-if="class == 'purchase'">Purchase Price</th>
+						<th ng-if="class == 'purchase'">Purchase Amount</th>
+						<th ng-if="class == 'purchase'">Purchase Time</th>
+						<th ng-if="class == 'sales'">Sales Order</th>
+						<th ng-if="class == 'sales'">Sales Price</th>
+						<th ng-if="class == 'sales'">Sales Amount</th>
+						<th ng-if="class == 'sales'">Sales Time</th>
+					</tr>
+				</thead>
+				<tbody id="tbody-stocks">
+					<tbody ng-repeat="index in [0,1,2,3,4,5,6,7,8,9,10,11]">
+						<tr ng-repeat="(i,x) in monthStocks[index]" data-href="#/itemDetail?id={{ x.id }}">
+							<td rowspan="{{monthStocks[index].length}}" ng-if="i == 0">
+								<strong style="font-size:20px;">{{monthNames[index]}}<br></strong>
+								Amount: {{monthSumAmount[index]}}<br>
+								Cost: {{monthTotalCost[index]}}
+							</td>
+							<td>{{ x.name }}</td>
+							<td>{{ x.text }}</td>
+							<td>{{ x.code }}</td>
+							<td>{{ x.maker }}</td>
+							<td>{{ x.detail }}</td>
+							<td ng-if="class == 'purchase'"><a href="#/purchaseOrderDetail?id={{x.orderId}}">{{ x.orderId }}</a></td>
+							<td ng-if="class == 'sales'"><a href="#/salesOrderDetail?id={{x.orderId}}">{{ x.orderId }}</a></td>
+							<td>{{ x.price }}</td>
+							<td>{{ x.amount }}</td>
+							<td>{{ x.time }}</td>
+						</tr>
+						
+						<tr ng-if="monthStocks[index].length == 0">
+							<td rowspan="1">
+								<strong style="font-size:20px;">{{monthNames[index]}}<br></strong>
+								Amount: {{monthSumAmount[index]}}<br>
+								Cost: {{monthTotalCost[index]}}
+							</td>
+							<td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td><td></td>
+						</tr>
+
+					</tbody>
+					<tr>
+						<td colspan="5" style="font-weight:bold;font-size:20px;">Total Amount: {{sumAmount}}</td>
+						<td colspan="5" style="font-weight:bold;font-size:20px;">Total Cost: {{totalCost}}</td>
+					</tr>
+					
+
+					
+				</tbody>
+			</table>
+
+</div>
+
+	
+	

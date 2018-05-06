@@ -1,0 +1,98 @@
+
+<style>
+.table tbody tr td {
+    text-align: left;
+}
+.table thead tr th {
+    text-align: left;
+}
+
+.specification{
+    background-color: #f1f1f1;
+    font-weight: bold;
+}
+</style>
+    <div class="container  table-responsive"  ng-controller="itemDetailCtrl" style="height:100%;width:100%;">
+        <div style="width:80%;text-align:center;margin:auto;">
+            <div style="text-align:center;">
+                <img style="max-width:480px;" width="50%" src="img/{{itemInfo.id}}.jpg">
+            </div>
+            <div style="margin-top:20px;">
+                <table class="table table-bordered">
+                    <tbody>
+                        <tr>
+                            <th style="width:25%;" class="specification">Item Code</th>
+                            <td id="code">{{itemInfo.code}}</td>
+                        </tr>
+                        <tr>
+                            <th class="specification">Classification</th>
+                            <td id="code">{{itemInfo.text}}</td>
+                        </tr>
+                        <tr>
+                            <th class="specification">Maker</th>
+                            <td id="maker">{{itemInfo.maker}}</td>
+                        </tr>
+                        <tr>
+                            <th class="specification">Detail</th>
+                            <td id="detail">{{itemInfo.detail}}</td>
+                        </tr>
+                        <tr>
+                            <th class="specification">Unit Price</th>
+                            <td id="price">{{itemInfo.price}}</td>
+                        </tr>
+                        <tr>
+                            <th class="specification">Unit</th>
+                            <td id="price">{{itemInfo.unit}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+
+            <div style="margin-top:20px;">
+
+                <div class="panel panel-default" style="margin-top: 20px;">
+                    <div class="panel-heading">
+                        <h1><strong>Item Specification</strong></h1>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-bordered">
+                            <tbody>
+                                <tr>
+                                    <td style="width:15%;" class="specification">Processor Series</td>
+                                    <td style="width:35%;">Intel Core i7</td>
+                                    <td style="width:15%;" class="specification">Processor (CPU) Manufacturer</td>
+                                    <td style="width:35%;">Intel</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%;" class="specification">Processor (CPU) Model Socket</td>
+                                    <td style="width:35%;">LGA 1151</td>
+                                    <td style="width:15%;" class="specification">Processor Speed</td>
+                                    <td style="width:35%;">4.2 GHz</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%;" class="specification">Device Type</td>
+                                    <td style="width:35%;">Processors</td>
+                                    <td style="width:15%;" class="specification">Item Dimensions</td>
+                                    <td style="width:35%;">5 * 9.52 * 4.88 in</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%;" class="specification">Item Weight</td>
+                                    <td style="width:35%;">3.04 ounces</td>
+                                    <td style="width:15%;" class="specification">Model Year</td>
+                                    <td style="width:35%;">2017</td>
+                                </tr>
+                                <tr>
+                                    <td style="width:15%;" class="specification">Processor Count</td>
+                                    <td style="width:35%;">4</td>
+                                    <td style="width:15%;" class="specification">Wattage</td>
+                                    <td style="width:35%;">91</td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+

@@ -1,0 +1,45 @@
+<nav class="navbar navbar-default" >
+    <div class="container">
+        <div class="navbar-header">
+            <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+                <span class="icon-bar"></span>
+            </button>
+            <a class="navbar-brand" href="index.html">COMPANY</a>
+        </div>
+        <div class="collapse navbar-collapse" id="myNavbar">
+            <ul class="nav navbar-nav">
+                <li ng-if="user.type == 'salesman' || user.type == 'admin'"><a href="sales.html#/">SALES</a></li>
+                <li ng-if="user.type == 'buyer' || user.type == 'admin'"><a href="purchase.html#/">PURCHASE</a></li>
+                <li ng-if="user.type == 'warehouse' || user.type == 'admin'"><a href="warehouse.html#/">WAREHOUSE</a></li>
+                <li ng-if="user.type == 'manager' || user.type == 'admin'"><a href="statistic.html#/">STATISTIC REPORTS</a></li>
+                <li ng-if="user.type == 'delivery' || user.type == 'admin'"><a href="delivery.html#/">DELIVERY</a></li>
+                <li ng-if="user.type == 'financial' || user.type == 'admin'"><a href="financial.html#/">FINANCIAL</a></li>
+            </ul>
+            <ul class="nav navbar-nav navbar-right" ng-controller="loginShowCtrl">
+
+                <li ng-show="!isLogin"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Login</a></li>
+                <li ng-show="isLogin" style="padding:15px 0px;color:#fff"> {{ username }}</li>
+                <li ng-show="isLogin" ng-click="logout()"><a href="login.html"><span class="glyphicon glyphicon-log-in"></span> Logout</a></li>
+
+            </ul>
+        </div>
+    </div>
+</nav>
+
+<div class="smk-alert-content smk-alert-content-top-center">
+    <div class="alert alert-warning alert-dismissable fade in" id="myWarningAlert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <span class="glyphicon glyphicon-info-sign"></span> <span id="alertWarningMsg"> Warning.</span>
+    </div>
+    <div class="alert alert-success alert-dismissable fade in" id="mySuccessAlert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <span class="glyphicon glyphicon-ok-sign"></span> <span id="alertSuccessMsg"> Success.</span>
+    </div>
+    <div class="alert alert-danger alert-dismissable fade in" id="myErrorAlert">
+        <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+        <span class="glyphicon glyphicon-remove-sign"></span> <span id="alerErrortMsg"> Error.</span>
+    </div>
+</div>
+

@@ -1,0 +1,176 @@
+
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="orderArrangeCtrl">
+    <div class="row">
+        <div class="panel panel-default col-sm-3" style="margin-top: 20px;height:240px;padding:0px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Order Introduction
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-condensed table-bordered">
+                    <tbody>
+                        <tr>
+                            <th style="width:100px;">Order Id</th>
+                            <td style="text-align:left">{{order.orderId}}</td>
+                        </tr>
+                        <tr>
+                            <th>State</th>
+                            <td style="text-align:left">{{order.state}}</td>
+                        </tr>
+                        <tr>
+                            <th>Customer</th>
+                            <td style="text-align:left">{{order.customerName}}</td>
+                        </tr>
+                        <tr>
+                            <th>Delivery Man</th>
+                            <td style="text-align:left">
+                            <select class="form-control" name="deliveryMan" ng-model='deliveryMan' ng-options="x.name for x in deliveryMen">
+                        </select>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+        <div class="panel panel-default col-sm-8" style="margin-top: 20px;margin-left:40px;height:240px;padding:0px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Items Statistic
+            </div>
+            <div class="panel-body ">
+                <div class=" table-responsive" style="height:160px;">
+                    <table class="table table-hover table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Classification</th>
+                                <th>Code</th>
+                                <th>Maker</th>
+                                <th>Detail</th>
+                                <th>Price</th>
+                                <th>Unit</th>
+                                <th>Amount</th>
+                                <th>Arranged Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-stocks">
+                            <tr ng-repeat="x in items" ng-click="arrange($event, x)" style="cursor: pointer;">
+                                <td>{{ x.item_id }}</td>
+                                <td>{{ x.text }}</td>
+                                <td>{{ x.code }}</td>
+                                <td>{{ x.maker }}</td>
+                                <td>{{ x.detail }}</td>
+                                <td>{{ x.price }}</td>
+                                <td>{{ x.unit }}</td>
+                                <td>{{ x.amount }}</td>
+                                <td ng-if="x.amount > x.arrangedAmount" style="color:red;">{{ x.arrangedAmount}}</td>
+                                <td ng-if="x.amount == x.arrangedAmount" style="color:green;">{{ x.arrangedAmount}}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+
+    </div>
+
+    <div style="margin-top:50px;">
+        <h1 style="text-align:center;" ng-if="hasArrange">Arrange Result</h1>
+        <div ng-repeat="(maker,value) in planDisplay">
+            <div class="panel panel-default" style="margin-top: 20px;">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-pencil"></span> {{ maker }}
+                </div>
+                <div class="panel-body">
+                    <table class="table table-hover table-condensed">
+                        <thead>
+                            <tr>
+                                <th>Warehouse</th>
+                                <th>Classification</th>
+                                <th>Code</th>
+                                <th>Maker</th>
+                                <th>Detail</th>
+                                <th>In Stock</th>
+                                <th>Order Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in value.data" data-href="stock.html?id={{ row.id }}">
+                                <td>{{ row.name }}</td>
+                                <td>{{ row.text }}</td>
+                                <td>{{ row.code }}</td>
+                                <td>{{ row.maker }}</td>
+                                <td>{{ row.detail }}</td>
+                                <td>{{ row.balance }}</td>
+                                <td>{{ row.amount }}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a class="btn btn-primary btn-success text-center" ng-click="submitArrangeOrder()" ng-if="order.state == 'Paid' && user.type == 'salesman' "><h4>Submit</h4></a>
+    </div>
+
+
+
+    <div class="modal fade" id="selectStockModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Select Items</h4>
+                </div>
+                <div class="modal-body container-fluid">
+                    <table class="table table-hover table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Warehouse</th>
+                                <th>Classification</th>
+                                <th>Code</th>
+                                <th>Maker</th>
+                                <th>Detail</th>
+                                <th>In Stock</th>
+                                <th>Unit</th>
+                                <th>Warning Line</th>
+                                <th>Submitted Arranged Amount</th>
+                                <th style="width:130px;">Arrange Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-stocks">
+                            <tr ng-repeat="x in stocks" data-href="warehouse.html#/stockDetail?id={{ x.id }}" style="cursor: pointer;">
+                                <td>{{ x.name }}</td>
+                                <td>{{ x.text }}</td>
+                                <td>{{ x.code }}</td>
+                                <td>{{ x.maker }}</td>
+                                <td>{{ x.detail }}</td>
+                                <td>{{ x.balance }}</td>
+                                <td>{{ x.unit }}</td>
+                                <td>{{ x.warning_line }}</td>
+                                <td>{{ x.submittedArrangedAmount }}</td>
+                                <td>
+                                    <input type="text" name="" ng-model="x.arrangeAmount"  class="form-control  input-sm" ng-keypress="confirmEnterKey($event)">
+                                </td>
+                                <!-- <td ng-dblclick="editArrangeAmount($event)">{{ x.arrangeAmount }}</td> -->
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer" style="text-align:center;">
+                    <button type="button" class="btn btn-success" ng-click="confirm($event)"  ng-show="order.state == 'Paid' && user.type == 'salesman' ">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Confirm
+                    </button>
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+

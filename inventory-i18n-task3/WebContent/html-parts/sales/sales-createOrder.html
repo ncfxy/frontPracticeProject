@@ -1,0 +1,83 @@
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="createSalesOrderCtrl">
+    <div 	style="text-align:center;">
+        <h1 ng-if="hasRecord">You don't add any contracts</h1>
+    </div>
+
+    <div  ng-if="!hasRecord">
+        <h1 style="text-align:center;">Related Contracts</h1>
+        <table class="table table-hover table-condensed contractTable table-bordered">
+            <thead>
+                <tr>
+                    <th>Contract ID</th>
+                    <th>Customer Name</th>
+                    <th>Salesman Name</th>
+                    <th>Type</th>
+                    <th>Sign Time</th>
+                    <th>First Delivery Time</th>
+                    <th>Periodic</th>
+                    <th>Validity Time</th>
+                    <th>Operation</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-stocks">
+                <tr ng-repeat="x in contractList" style="cursor: pointer;" data-href="sales.html#/contractDetail?id={{ x.contractId }}">
+                    <td>{{ x.contractId }}</td>
+                    <td>{{ x.customerName }}</td>
+                    <td>{{ x.salesmanName }}</td>
+                    <td>{{ x.contractType }}</td>
+                    <td>{{ x.sign_time }}</td>
+                    <td>{{ x.delivery_time }}</td>
+                    <td>{{ x.periodic }} days</td>
+                    <td>{{ x.validity_time }}</td>
+                    <td><a class="btn btn-danger btn-sm" ng-click="removeContract($event,x.contractId)"><span class="glyphicon glyphicon-minus"></span></a></td>
+                </tr>
+            </tbody>
+        </table>
+        <script type="text/javascript">
+            $('.contractTable').on('click', 'tbody > tr', function() {
+                window.location = $(this).attr('data-href');
+            });
+        </script>
+
+
+    </div>
+    <hr>
+    <div ng-if="!hasRecord">
+        <h1 style="text-align:center;">Items Statistic</h1>
+        <table class="table table-hover table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th>Item ID</th>
+                    <th>Classification</th>
+                    <th>Code</th>
+                    <th>Maker</th>
+                    <th>Detail</th>
+                    <th>Price</th>
+                    <th>Unit</th>
+                    <th>Amount</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-stocks">
+                <tr ng-repeat="x in items" data-href="#itemDetail?id={{ x.id }}" ng-click="detail($event)" style="cursor: pointer;">
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.text }}</td>
+                    <td>{{ x.code }}</td>
+                    <td>{{ x.maker }}</td>
+                    <td>{{ x.detail }}</td>
+                    <td>{{ x.price }}</td>
+                    <td>{{ x.unit }}</td>
+                    <td>{{ x.amount }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div class="text-center" >
+        <a class="btn btn-primary btn-primary text-center" href="#/contracts"><h4>Add Contracts</h4></a>
+        <a  ng-if="!hasRecord" class="btn btn-primary btn-success text-center" ng-click="createSaleOrder()"><h4>Create Sale Order</h4></a>
+    </div>
+
+</div>
+
+

@@ -1,0 +1,197 @@
+
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="salesOrderDetailCtrl">
+
+    <div class="panel panel-default" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-pencil"></span> Order Introduction
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-condensed table-bordered">
+                <tbody>
+                    <tr>
+                        <th style="width:100px;">Order Id</th>
+                        <td style="text-align:left">{{order.orderId}}</td>
+                    </tr>
+                    <tr>
+                        <th>State</th>
+                        <td style="text-align:left">{{order.state}}</td>
+                    </tr>
+                    <tr>
+                        <th>Customer</th>
+                        <td style="text-align:left">{{order.customerName}}</td>
+                    </tr>
+                    <tr>
+                        <th>Create Time</th>
+                        <td style="text-align:left">{{order.create_time}}</td>
+                    </tr>
+                    <tr>
+                        <th>Delivery Man</th>
+                        <td style="text-align:left">
+                            {{order.delivery}}
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Operations</th>
+                        <td>
+                            <table class="table table-hover table-condensed" style="text-align: left;">
+                                <thead><tr><th>Operator Name</th><th>Operation</th><th>Operation Time</th></tr></thead>
+                                <tbody>
+                                    <tr ng-repeat="x in operations">
+                                        <td ng-bind="x.name"></td>
+                                        <td ng-if="!x.href">{{x.operation}}</td>
+                                        <td ng-if="x.href"><a href="{{x.href}}">{{x.operation}}</a></td>
+                                        <td ng-bind="x.operation_time"></td>
+                                    </tr>
+                                </tbody>
+                            </table>
+                        </td>
+                    </tr>
+                    <tr>
+                        <td colspan="2" style="height:6em;">
+                            <div class="stepInfo">
+                                <ul>
+                                    <li ng-repeat="i in lines" style="width:{{gap}}%;background:{{stepColors[i]}}"></li>
+                                </ul>
+                                <div class="stepIco" ng-repeat="(index,step) in steps" style="background:{{stepColors[index]}};left:{{0+gap*index}}%;">{{index+1}}
+                                    <div class="stepText" id="createText" style="color:{{stepColors[index]}};">{{step}}</div>
+                                </div>
+
+                            </div>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div>
+        <h1 style="text-align:center;">Related Contracts</h1>
+        <table class="table table-hover table-condensed contractTable table-bordered">
+            <thead>
+                <tr>
+                    <th>Contract ID</th>
+                    <th>Customer Name</th>
+                    <th>Salesman Name</th>
+                    <th>Type</th>
+                    <th>Sign Time</th>
+                    <th>First Delivery Time</th>
+                    <th>Periodic</th>
+                    <th>Validity Time</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-stocks">
+                <tr ng-repeat="x in contractList" style="cursor: pointer;" data-href="#/contractDetail?id={{ x.contractId }}" ng-click="goToDataHref($event)">
+                    <td>{{ x.contractId }}</td>
+                    <td>{{ x.customerName }}</td>
+                    <td>{{ x.salesmanName }}</td>
+                    <td>{{ x.contractType }}</td>
+                    <td>{{ x.sign_time }}</td>
+                    <td>{{ x.delivery_time }}</td>
+                    <td>{{ x.periodic }} days</td>
+                    <td>{{ x.validity_time }}</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+
+    <hr>
+    <div>
+        <h1 style="text-align:center;">Items Statistic</h1>
+        <table class="table table-hover table-condensed table-bordered">
+            <thead>
+                <tr>
+                    <th>Item ID</th>
+                    <th>Classification</th>
+                    <th>Code</th>
+                    <th>Maker</th>
+                    <th>Detail</th>
+                    <th>Price</th>
+                    <th>Unit</th>
+                    <th>Amount</th>
+                    <th>Arranged Amount</th>
+                    <th>Warehouse Exit Amount</th>
+                </tr>
+            </thead>
+            <tbody id="tbody-stocks">
+                <tr ng-repeat="x in items" data-href="#itemDetail?id={{ x.id }}" ng-click="detail($event)" style="cursor: pointer;">
+                    <td>{{ x.id }}</td>
+                    <td>{{ x.text }}</td>
+                    <td>{{ x.code }}</td>
+                    <td>{{ x.maker }}</td>
+                    <td>{{ x.detail }}</td>
+                    <td>{{ x.price }}</td>
+                    <td>{{ x.unit }}</td>
+                    <td>{{ x.amount }}</td>
+                    <td ng-if="x.amount > x.arrangedAmount" style="color:red;">{{ x.arrangedAmount}}</td>
+                    <td ng-if="x.amount == x.arrangedAmount" style="color:green;">{{ x.arrangedAmount}}</td>
+                    <td ng-if="x.exitWarehouseAmount < x.arrangedAmount" style="color:red;">{{ x.exitWarehouseAmount }}</td>
+                    <td ng-if="x.exitWarehouseAmount >= x.arrangedAmount" style="color:green;">{{ x.exitWarehouseAmount }}</td>
+                </tr>
+                <tr>
+                    <td colspan="10" style="background-color:#F1F1F1;">
+                        <h3><strong>Total Price: {{totalPrice}}</strong></h3>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
+    <div style="margin-top:50px;">
+        <h1 style="text-align:center;" ng-if="hasArrange" >Arrange Result</h1>
+        <div ng-repeat="(maker,value) in planDisplay">
+            <div class="panel panel-default" style="margin-top: 20px;">
+                <div class="panel-heading">
+                    <span class="glyphicon glyphicon-pencil"></span> {{ maker }}
+                    <div class="pull-right" ng-if="user.type == 'warehouse' && user.warehouse_name == maker">
+                        <a class="btn btn-danger btn-xs" href="warehouse.html#/warehouseEntryCreate?id={{orderId}}&amp;warehouse={{maker}}&amp;type=Exit">Warehouse Exit</a>
+                        <a class="btn btn-primary btn-xs" data-toggle="modal" ng-click="printThis($event)"><span class="	glyphicon glyphicon-print"></span>Print</a>
+                    </div>
+                </div>
+                <div class="panel-body">
+                    <h3 style="text-align:center;" ng-if="user.type == 'warehouse'">
+                        <strong>{{maker}}'s Stock list in Sale Order(<span style="text-decoration:underline;">{{orderId}}</span>)</strong>
+                    </h3>
+                    <table class="table table-hover table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Warehouse</th>
+                                <th>Classification</th>
+                                <th>Code</th>
+                                <th>Maker</th>
+                                <th>Detail</th>
+                                <th>In Stock</th>
+                                <th>Order Amount</th>
+                                <th>Warehouse Exit Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr ng-repeat="row in value.data" data-href="stock.html?id={{ row.id }}">
+                                <td>{{ row.name }}</td>
+                                <td>{{ row.text }}</td>
+                                <td>{{ row.code }}</td>
+                                <td>{{ row.maker }}</td>
+                                <td>{{ row.detail }}</td>
+                                <td>{{ row.balance }}</td>
+                                <td>{{ row.amount }}</td>
+                                <td ng-if="row.finished" style="color:green;">{{ row.exitAmount }}</td>
+                                <td ng-if="!row.finished" style="color:red;">{{ row.exitAmount }}</td>
+                            </tr>
+
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a class="btn btn-primary btn-success text-center" ng-click="payOrder()" ng-if="order.state == 'create' && user.type == 'financial'"><h4>Received</h4></a>
+        <a class="btn btn-primary btn-success text-center" href="#/orderArrange?id={{ orderId }}" ng-if="order.state == 'Paid' && user.type == 'salesman'"><h4>Arrange</h4></a>
+        <a class="btn btn-primary btn-success text-center" ng-click="finishOrder()" ng-if="order.state == 'Delivered' && user.type == 'salesman'"><h4>Finish Order</h4></a>
+        <a class="btn btn-primary btn-success text-center" ng-click="deliveredOrder()" ng-if="order.state == 'Warehouse Exiting' && user.type == 'delivery' && deliveryId == user.id"><h4>Delivered Order</h4></a>
+    </div>
+
+</div>
+

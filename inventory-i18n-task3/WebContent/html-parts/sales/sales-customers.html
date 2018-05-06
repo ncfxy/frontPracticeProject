@@ -1,0 +1,37 @@
+
+<div class="container table-responsive" ng-controller="customerCtrl" style="height:100%;width:100%;">
+
+    <hr>
+
+    <div class="clearfix" style="margin: 10px 0;">
+        <a href="#customerForm" class="btn btn-sm btn-success pull-right">
+            <span class="glyphicon glyphicon-plus"></span> New
+        </a>
+    </div>
+    <table class="table table-hover table-condensed">
+        <thead>
+            <tr>
+                <th>Customer ID</th>
+                <th>Name</th>
+                <th>Contact Person</th>
+                <th>Sex</th>
+                <th>Telephone</th>
+                <th>Address</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-stocks">
+            <tr ng-repeat="x in customers" style="cursor: pointer;">
+                <td>{{ x.id }}</td>
+                <td>{{ x.name }}</td>
+                <td>{{ x.contact_person }}</td>
+                <td>{{ x.sex }}</td>
+                <td>{{ x.tel }}</td>
+                <td>{{ x.addr }}</td>
+            </tr>
+        </tbody>
+    </table>
+    <div class="text-center">
+        <a class="btn btn-primary btn-success text-center" href="#/contractForm"><h4>Back To Sign Contract</h4></a>
+    </div>
+</div>
+

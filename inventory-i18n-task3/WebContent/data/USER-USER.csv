@@ -1,0 +1,21 @@
+id,user_id,password,name,type,belong_warehouse
+1,admin,21232f297a57a5a743894a0e4a801fc3,Administrator,admin,2
+2,manager1,c240642ddef994358c96da82c0361a58,Wang Zong,manager,2
+3,buyer1,5cbd9d629096842872fdc665d2d03ba3,John,buyer,2
+4,buyer2,ba71d29d4efdd8753c516db594fab6d8,Lily,buyer,2
+5,buyer3,3cb52c98f366dad959eb21181107c7a7,Mick,buyer,2
+6,salesman1,3852a1d20be55333d55aef43519f8325,Li Lei,salesman,2
+7,salesman2,ec58e2732caed60d04e8eb5a74a79284,Han MeiMei,salesman,2
+8,salesman3,910100c6cc893905862fcad8ffea0951,Qin Yu,salesman,2
+9,salesman4,12fc6a40b43884f650b1506f4373b8ca,Wang Wu,salesman,2
+10,keeper1,6688569b67e6ffa3ffc9186a1a1a15d7,Qing Chun,warehouse,1
+11,keeper2,0182bb760808363db769207638c67668,Zhao Shu,warehouse,2
+12,keeper3,d2f76dac330344569b77e59fe61b3169,Qian XuYang,warehouse,3
+13,keeper4,0cdaae69e11d3a411a561313325054c6,Sun LiLi,warehouse,4
+14,delivery1,763d21e2fadf44104db6c222d54a15af,Wang Yong,delivery,2
+15,delivery2,0099b33451d0dc11f525fbceae6472ea,Ying Xu,delivery,2
+16,delivery3,0a8454636b501e467c5b6e2f054a7e0c,Wen Wan,delivery,2
+17,delivery4,6f3bdc5c4292dd8e15c2617e2c12c34e,Hong Zhi,delivery,2
+18,financial1,8d1f2dfb17ae13a5fab96288e2247a73,Yong Yong,financial,2
+19,financial2,069418b7186cbdf07ff7be5aa20bbce7,Wang Hui,financial,2
+20,financial3,642c52157535c178a959bd679f35b284,Zhou Mingyuan,financial,2

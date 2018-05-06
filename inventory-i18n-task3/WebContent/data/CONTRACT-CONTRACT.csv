@@ -1,0 +1,4 @@
+id,customer,salesman,type,sign_time,delivery_time,periodic,validity_time,state
+1,1,1,periodic,2017-06-01T16:00:00.000Z,2017-06-01T16:00:00.000Z,10,2018-06-01T16:00:00.000Z,valid
+2,2,4,once,2017-05-04T16:00:00.000Z,2017-05-08T16:00:00.000Z,0,2017-05-08T16:00:00.000Z,valid
+3,2,4,once,2017-06-05T16:00:00.000Z,2017-06-05T16:00:00.000Z,0,2017-06-05T16:00:00.000Z,valid

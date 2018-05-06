@@ -1,0 +1,89 @@
+html, body{
+    height:100%;
+}
+
+.row.content{
+    height: 100%;
+}
+@media screen and (max-height: 767px) {
+}
+/* Set gray background color and 100% height */
+.sidenav {
+  padding-top: 20px;
+  background-color: #f1f1f1;
+  height: 100%;
+}
+
+.nav.nav-pills{
+    font-size:16px;
+    font-weight: bold;
+}
+
+.table tbody tr td{
+  vertical-align: middle;
+  text-align: center;
+}
+
+.table thead tr th{
+  vertical-align: middle;
+  text-align: center;
+}
+
+
+/* header.html 样式*/
+.navbar {
+    margin-bottom: 0;
+    background-color: #f4511e;
+    z-index: 9999;
+    border: 0;
+    font-size: 12px !important;
+    line-height: 1.42857143 !important;
+    letter-spacing: 4px;
+    border-radius: 0;
+    /*height: 60px;*/
+}
+
+.navbar li a, .navbar .navbar-brand {
+    color: #fff !important;
+}
+
+.navbar-nav li a:hover, .navbar-nav li.active a {
+    color: #f4511e !important;
+    background-color: #fff !important;
+}
+
+.navbar-default .navbar-toggle {
+    border-color: transparent;
+    color: #fff !important;
+}
+
+/*alert 弹窗的配置*/
+.smk-alert-content{
+  position: fixed;
+  width: 640px;
+  z-index: 10000;
+}
+.smk-alert-content span{
+    font-size:20px;
+}
+.smk-alert-content-top-right{
+  top: 20px;
+  right: 20px;
+}
+.smk-alert-content-top-center{
+  top: 20px;
+  margin: 0 0 0 -180px;
+  left: 50%;
+}
+#myWarningAlert, #mySuccessAlert, #myErrorAlert{
+    display: none;
+}
+
+
+
+
+.stepInfo{position:relative;background:#f2f2f2;margin:20px auto 0 auto;width:80%;}
+.stepInfo li{float:left;width:48%;height:0.15em;background:#bbb;list-style-type:none;}
+.stepInfo ul{margin:0;padding:0;}
+.stepIco{border-radius:1em;padding:0.03em;background:#bbb;text-align:center;line-height:1.5em;color:#fff; position:absolute;width:1.4em;height:1.4em;top:-0.7em;}
+.stepText{color:#666;margin-top:0.2em;width:12em;text-align:center;margin-left:-5.2em;}

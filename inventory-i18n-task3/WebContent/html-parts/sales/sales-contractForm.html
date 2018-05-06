@@ -1,0 +1,141 @@
+
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="contractFormCtrl">
+    <div class="panel panel-default" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-list"></span> Contract Information
+        </div>
+        <div class="panel-body">
+            <div class="form">
+                <div class="form-group">
+                    <label>Contract ID (Auto Generate)</label>
+                    <input type="text" class="form-control" name="contractId" ng-model="contractId" disabled>
+
+                </div>
+                <div class="form-group">
+                    <label>Customer</label>
+                    <a href="#/customers" style="text-decoration:underline;">(Management)</a>
+                    <select class="form-control" name="customer" ng-model='customer' ng-options="x.name for x in customers">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Salesman</label>
+                    <select class="form-control" name="salesman" ng-model='salesman' ng-options="x.user_id for x in salesmen">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Type</label>
+                    <select class="form-control" name="contractType" ng-model='contractType' ng-options="x.text for x in contractTypes">
+                    </select>
+                </div>
+                <div class="form-group">
+                    <label>Sign Time</label>
+                    <input type="date" class="form-control" name="sign_time" ng-model="sign_time" >
+                </div>
+                <div class="form-group">
+                    <label>First Delivery Time</label>
+                    <input type="date" class="form-control" name="delivery_time" ng-model="delivery_time" >
+                </div>
+                <div class="form-group" ng-hide="contractType.text == 'once'">
+                    <label>Periodic</label>
+                    <input type="text" class="form-control" name="periodic" ng-model="periodic" >
+                </div>
+                <div class="form-group">
+                    <label>Validity Time</label>
+                    <input type="date" class="form-control" name="validity_time" ng-model="validity_time" >
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="panel panel-default" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-list"></span> Item List
+            <div class="pull-right">
+                <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#selectItemModal"><span class="glyphicon glyphicon-pencil"></span>change</a>
+            </div>
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th>Item ID</th>
+                        <th>Classification</th>
+                        <th>Code</th>
+                        <th>Maker</th>
+                        <th>Detail</th>
+                        <th>Price</th>
+                        <th>Unit</th>
+                        <th>Amount</th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-stocks">
+                    <tr ng-repeat="x in chooseItems" data-href="#itemDetail?id={{ x.id }}" ng-click="detail($event)" style="cursor: pointer;">
+                        <td>{{ x.id }}</td>
+                        <td>{{ x.text }}</td>
+                        <td>{{ x.code }}</td>
+                        <td>{{ x.maker }}</td>
+                        <td>{{ x.detail }}</td>
+                        <td>{{ x.price }}</td>
+                        <td>{{ x.unit }}</td>
+                        <td>{{ x.amount }}</td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+
+    <button type="submit" class="btn btn-success" id="update" ng-click="addContract($event)">
+        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> Add
+    </button>
+
+    <div class="modal fade" id="selectItemModal" role="dialog">
+        <div class="modal-dialog modal-lg">
+
+            <!-- Modal content-->
+            <div class="modal-content">
+                <div class="modal-header">
+                    <button type="button" class="close" data-dismiss="modal">&times;</button>
+                    <h4 class="modal-title">Select Items</h4>
+                </div>
+                <div class="modal-body container-fluid">
+                    <table class="table table-hover table-condensed table-bordered">
+                        <thead>
+                            <tr>
+                                <th>Item ID</th>
+                                <th>Classification</th>
+                                <th>Code</th>
+                                <th>Maker</th>
+                                <th>Detail</th>
+                                <th>Price</th>
+                                <th>Unit</th>
+                                <th style="width:30px;">Amount</th>
+                            </tr>
+                        </thead>
+                        <tbody id="tbody-stocks">
+                            <tr ng-repeat="x in allItems" data-href="#itemDetail?id={{ x.id }}" ng-click="detail($event)" style="cursor: pointer;">
+                                <td>{{ x.id }}</td>
+                                <td>{{ x.text }}</td>
+                                <td>{{ x.code }}</td>
+                                <td>{{ x.maker }}</td>
+                                <td>{{ x.detail }}</td>
+                                <td>{{ x.price }}</td>
+                                <td>{{ x.unit }}</td>
+                                <td ng-click="editAmount($event)">{{ x.amount }}</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                <div class="modal-footer" style="text-align:center;">
+                    <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                </div>
+            </div>
+
+        </div>
+    </div>
+
+
+</div>
+
+

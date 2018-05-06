@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html manifest="test.manifest">
+<head>
+
+<script src="js/writeHeaderFiles.js"></script>
+<script type="text/javascript">
+    writeHeader('purchase');
+</script>
+
+<meta charset="utf-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width">
+<title>COMPANY</title>
+
+</head>
+<body ng-app="mainApp">
+    <div ng-include="'html-parts/header.html'"></div>
+
+    <div class="container-fluid" style="height:90%">
+      <div class="row content"  style="overflow-y:auto;">
+        <div class="col-sm-2 sidenav text-center">
+
+          <ul class="nav nav-pills nav-stacked text-left">
+            <li><a href="#plan">Purchase Plan</a></li>
+            <!-- <li><a href="#createOrder">Create Purchase Order</a></li> -->
+            <li><a href="#orderList">Purchase Orders List</a></li>
+            <li><a href="#itemsManagement">Items Management</a></li>
+            <li><a href="#/report?class=purchase">Purchase Report</a></li>
+          </ul>
+        </div>
+
+        <div class="col-sm-10" style="padding-top:20px;height:100%">
+            <div class="container-fluid" style="height:100%;width:100%;">
+                <div ng-view style="height:100%"></div>
+            </div>
+        </div>
+    </div>
+
+
+</body>
+</html>

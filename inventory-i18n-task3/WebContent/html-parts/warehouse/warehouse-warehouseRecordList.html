@@ -1,0 +1,82 @@
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="warehouseRecordListCtrl">
+
+    <h2 class="text-center" ng-if="!show">You can only choose 'Entry' or 'Exit' in the URL.</h2>
+
+    <form class="form-inline text-center">
+        <div class="form-group">
+            <label>Warehouse</label>
+            <select name="q1" class="form-control" ng-model="q1" ng-options="x.warehouseName for x in warehouseChoice" ng-change="search()" id="q1">
+                <!-- <option value="0" selected>All</option> -->
+                <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+            </select>
+        </div>
+        <div class="form-group">
+            <label>Order ID: </label> <input name="searchOrderId" type="text"
+            class="form-control" placeholder="Input Order ID" ng-model="searchOrderId">
+        </div>
+        <div class="form-group">
+            <label>Time Start</label>
+            <input name="startTime" type="date"
+            class="form-control" ng-model="startTime">
+        </div>
+        <div class="form-group">
+            <label>Time End</label>
+            <input name="endTime" type="date"
+            class="form-control" ng-model="endTime">
+        </div>
+
+        <button type="submit" class="btn btn-primary" ng-click="search()">
+            <span class="glyphicon glyphicon-search"></span> Search
+        </button>
+    </form>
+    <hr>
+
+    <div class="clearfix" style="margin: 10px 0;" ng-if="show">
+        <a class="btn btn-sm btn-success pull-right"  ng-click="addNew($event)">
+            <span class="glyphicon glyphicon-plus"></span> New
+        </a>
+    </div>
+
+    <table class="table table-hover table-condensed"  ng-if="show">
+        <thead>
+            <tr ng-if="searchType == 'Entry'">
+                <th>Entry Id</th>
+                <th>Order Id</th>
+                <th>Warehouse</th>
+                <th>Entry Time</th>
+                <th>Operator Name</th>
+            </tr>
+            <tr ng-if="searchType == 'Exit'">
+                <th>Exit Id</th>
+                <th>Order Id</th>
+                <th>Warehouse</th>
+                <th>Exit Time</th>
+                <th>Operator Name</th>
+            </tr>
+        </thead>
+        <tbody id="tbody-stocks">
+            <tr ng-repeat=" x in records"  style="cursor:pointer;"  data-href="warehouse.html#/warehouseEntryDetail?id={{ x.recordId }}&amp;type=Entry" ng-click="goToDataHref($event)"  ng-if="searchType == 'Entry'">
+                <td ng-bind="x.recordId"></td>
+                <td ng-bind="x.order_id"></td>
+                <td ng-bind="x.whouse_name"></td>
+                <td ng-bind="x.entry_time"></td>
+                <td ng-bind="x.name"></td>
+            </tr>
+            <tr ng-repeat=" x in records"  style="cursor:pointer;"  data-href="warehouse.html#/warehouseEntryDetail?id={{ x.recordId }}&amp;type=Exit" ng-click="goToDataHref($event)"  ng-if="searchType == 'Exit'">
+                <td ng-bind="x.recordId"></td>
+                <td ng-bind="x.order_id"></td>
+                <td ng-bind="x.whouse_name"></td>
+                <td ng-bind="x.entry_time"></td>
+                <td ng-bind="x.name"></td>
+            </tr>
+        </tbody>
+    </table>
+
+<!-- 	<div class="text-center"  ng-if="show">
+        <a class="btn btn-primary btn-success text-center" ng-click="addNew($event)">
+            <div><span class="glyphicon glyphicon-plus"> Add New</div>
+        </a>
+    </div> -->
+</div>
+

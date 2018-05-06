@@ -1,0 +1,226 @@
+
+    <div class="container table-responsive" style="height:100%;width:100%;" ng-controller="purchasePlanCtrl">
+        <form class="form-inline text-center">
+
+            <div class="form-group">
+                <label>Year</label>
+                <select name="year" class="form-control" ng-model="year"  ng-change="search()">
+                    <option value="2017" selected>2017</option>
+                    <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Warehouse</label>
+                <select name="q1" class="form-control" ng-model="q1" ng-options="x.warehouseName for x in warehouseChoice" ng-change="search()">
+                    <!-- <option value="0" selected>All</option> -->
+                    <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Classification</label>
+                <select name="q2" class="form-control" ng-model="q2" ng-options="x.classificationName for x in classificationChoice" ng-change="search()">
+                    <!-- <option value="0">All</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Code</label> <input name="q3" type="text"
+                class="form-control" placeholder="Prefix Search" ng-model="inputCode">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="search()">
+                <span class="glyphicon glyphicon-filter"></span> Filter
+            </button>
+
+        </form>
+
+
+        <hr>
+
+
+        <div class="panel panel-default" style="margin-top: 20px;">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Purchase Yearly plan
+                <div class="pull-right" ng-if="!chooseItem">
+                    <a class="btn btn-primary btn-xs" ng-click="export()"><span class="glyphicon glyphicon-export"></span> export</a>
+                    <a class="btn btn-primary btn-xs" data-toggle="modal" data-target="#importModal"><span class="glyphicon glyphicon-import"></span>import</a>
+                </div>
+            </div>
+            <div class="panel-body">
+                <table class="table table-hover table-condensed table-bordered">
+                    <thead>
+                        <tr>
+                            <th>Warehouse</th>
+                            <th>Item</th>
+                            <th>Plan Value</th>
+                            <th>Unit</th>
+                            <th>Warning Line</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr ng-repeat="x in yearlyPlan" style="cursor:pointer;" ng-click="chooseItemFromYearlyPlan($event)">
+                            <td>{{x.warehouse}}</td>
+                            <td>{{x.item}}</td>
+                            <td>{{x.planValue}}</td>
+                            <td>{{x.unit}}</td>
+                            <td>{{x.warning_line}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+        <div class="panel panel-default" style="margin-top: 20px;" ng-hide="hideMonthlyPlan">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span> Sales Monthly plan
+            </div>
+            <div class="panel-body">
+                <table class="table table-bordered">
+                    <thead>
+                        <tr>
+                            <th ng-repeat='x in months'>{{x}}</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td ng-repeat="x in saleMonthlyPlan">{{x.planValue}}</td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="panel-footer">
+
+            </div>
+        </div>
+
+        <div class="panel panel-default" style="margin-top: 20px;" ng-hide="hideMonthlyPlan">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span>Purchase Monthly plan
+
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="col-sm-4">
+                        <table class="table table-hover table-bordered">
+                            <thead>
+                                <tr>
+                                    <th style="width:100px;">Month</th>
+                                    <th>Plan Value</th>
+                                </tr>
+                            </thead>
+                            <tbody>
+                                <tr ng-repeat="x in monthlyPlan">
+                                    <td>{{x.month}}</td>
+                                    <!-- <td class="planValue" ng-click="editMonthlyPlan($event)" ng-bind="x.planValue"></td> -->
+                                    <td><input type="number" min="0" class="form-control  input-sm text-center" ng-model="x.planValue" ng-change="changePlan(x)"></td>
+                                </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                    <div class="col-sm-8">
+                        <div id="monthlySalePlanCanvas" style="text-align:center;">
+                            <canvas style="width:300px;height:200px;">
+                            </canvas>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+                <button type="submit" class="btn btn-success" id="update" ng-click="updateMonthlyPlan($event)">
+                    <span class="glyphicon glyphicon-ok" aria-hidden="true"></span>
+                    Update
+
+                </button>
+                <span class="help-block" style="display:inline;margin-left:5px;">(Click Update will save your change to database.)</span>
+            </div>
+        </div>
+
+        <div class="panel panel-default" style="margin-top: 20px;" ng-hide="hideMonthlyPlan">
+            <div class="panel-heading">
+                <span class="glyphicon glyphicon-pencil"></span>Evaluation of Monthly plan
+
+            </div>
+            <div class="panel-body">
+                <div class="row">
+                    <div class="well col-sm-6" style="margin-left:20px;">
+                        <h4><strong>Experience Values:</strong></h4>
+                        <form class="form-inline">
+                            <div class="form-group">
+                                <label for="inputdefault">Holding Cost / Pcs: </label>
+                                <input class="form-control input-sm" id="holdingCost" type="number" min="0" size="10" ng-model="holdingCost" ng-change="update()">
+                            </div>
+                                <div class="form-group">
+                                <label for="inputdefault">Order Cost / order: </label>
+                                <input class="form-control input-sm" id="orderCost" type="number"  min="0" size="10" ng-model="orderCost" ng-change="update()">
+                            </div>
+                            <div class="form-group">
+                                <label for="inputdefault">Estimation Per price: </label>
+                                <input class="form-control input-sm" id="estimate price" type="number"  min="0" size="10" ng-model="perPrice" ng-change="update()">
+                            </div>
+                            <span class="help-block">If the value is not filled, it will be calculate by zero.</span>
+                        </form>
+                    </div>
+                    <div class="well col-sm-4"  style="margin-left:20px;">
+                        <h4><strong>Total Cost: </strong></h4>
+                            <p style="text-align:center;color:red;font-size:36px;" ng-bind="totalCost"></p>
+                    </div>
+                </div>
+            </div>
+            <div class="panel-footer">
+            </div>
+        </div>
+
+
+        <div class="modal fade" id="importModal" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Import plan</h4>
+                    </div>
+                    <div class="modal-body container-fluid">
+                        <p>Please Select Your File:</p>
+                        <div><input id="importFileUpload" type="file"/></div>
+                    </div>
+                    <div class="modal-footer" style="text-align:center;">
+                        <button type="button" class="btn btn-success"  ng-click="importData($event)">
+                        <span class="glyphicon glyphicon-ok" aria-hidden="true"></span> import
+                        </button>
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+        <div class="modal fade" id="exportModal" role="dialog">
+            <div class="modal-dialog modal-md">
+
+                <!-- Modal content-->
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <button type="button" class="close" data-dismiss="modal">&times;</button>
+                        <h4 class="modal-title">Import the plan</h4>
+                    </div>
+                    <div class="modal-body container-fluid">
+                        <form>
+                            <div class="form-group">
+                                <label for="comment">Data:</label>
+                                <textarea class="form-control" rows="20" id="exportContent"></textarea>
+                            </div>
+                        </form>
+                        <p style="font-size:0.9em;color:grey;">(Please create an empty csv file and open it with notepad. Then copy the content here to the new file and save.)</p>
+                    </div>
+                    <div class="modal-footer" style="text-align:center;">
+
+                        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+
+
+
+    </div>
+<!-- <script src="js/index.js"></script> -->

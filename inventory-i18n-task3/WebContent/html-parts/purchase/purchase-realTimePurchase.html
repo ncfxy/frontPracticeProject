@@ -1,0 +1,68 @@
+
+<div  class="container table-responsive" style="height:100%;width:100%;" ng-controller="createPurchaseOrderCtrl">
+    <div class="form-group">
+        <label>Year</label>
+        <select name="year" class="form-control" ng-model="year" ng-change="itemChange()">
+            <option value="2017" selected>2017</option>
+            <!-- <option value="2018">2018</option> -->
+            <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+        </select>
+    </div>
+    <div class="form-group">
+        <label>Month</label>
+        <select name="year" class="form-control" ng-model="month" ng-change="itemChange()">
+            <option value="1" selected>Jan</option>
+            <option value="2">Feb</option>
+            <option value="3">Mar</option>
+            <option value="4">Apr</option>
+            <option value="5">May</option>
+            <option value="6">Jun</option>
+            <option value="7">Jul</option>
+            <option value="8">Aug</option>
+            <option value="9">Sep</option>
+            <option value="10">Oct</option>
+            <option value="11">Nov</option>
+            <option value="12">Dec</option>
+            <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+        </select>
+    </div>
+
+    <div class="panel panel-default" style="margin-top: 20px;">
+        <div class="panel-heading">
+            <span class="glyphicon glyphicon-pencil"></span> Purchase Plan of This month
+        </div>
+        <div class="panel-body">
+            <table class="table table-hover table-condensed table-bordered">
+                <thead>
+                    <tr>
+                        <th>Warehouse</th>
+                        <th>Code</th>
+                        <th>Maker</th>
+                        <th>Detail</th>
+                        <th>Plan Stock</th>
+                        <th>Real Stock</th>
+                        <th>Purchase Plan</th>
+                        <th style="width:180px;">Purchase Count</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="x in candidatePurchaseOrder">
+                        <td ng-bind="x.warehouse"></td>
+                        <td ng-bind="x.code"></td>
+                        <td ng-bind="x.maker"></td>
+                        <td ng-bind="x.detail"></td>
+                        <td ng-bind="x.planStock"></th>
+                        <td ng-bind="x.realStock"></th>
+                        <td ng-bind="x.purchasePlan"></th>
+                        <td ng-bind="x.purchaseCount" ng-dblclick="editPurchaseCount($event)" style="color:red;"></td>
+                    </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+
+    <div class="text-center">
+        <a class="btn btn-primary btn-success text-center" ng-click="addToPurchaseOrder()"><h4>Import To Purchase Order</h4></a>
+    </div>
+
+</div>

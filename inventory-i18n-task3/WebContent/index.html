@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html manifest="test.manifest">
+<head>
+
+<script src="js/writeHeaderFiles.js"></script>
+<script type="text/javascript">
+    writeHeader('index');
+</script>
+
+<meta charset="utf-8">
+<meta http-equiv="Pragma" content="no-cache">
+<meta http-equiv="Cache-Control" content="no-cache">
+<meta name="viewport" content="width=device-width">
+<title>COMPANY</title>
+</head>
+<body ng-app="mainApp">
+    <div ng-include="'html-parts/header.html'"></div>
+
+
+
+    <style type="text/css">
+        .jumbotron {
+            background-color: #f4511e;
+            color: #fff;
+            padding: 100px 25px;
+        }
+        .container-fluid {
+          padding: 60px 50px;
+        }
+        .bg-grey {
+          background-color: #f6f6f6;
+        }
+        .logo-small {
+            color: #f4511e;
+            font-size: 50px;
+        }
+        .logo {
+            color: #f4511e;
+            font-size: 200px;
+        }
+        @media screen and (max-width: 768px) {
+            .col-sm-4 {
+                text-align: center;
+                margin: 25px 0;
+            }
+        }
+    </style>
+    <div class="jumbotron text-center">
+        <h1><strong>COMPANY</strong></h1>
+        <br>
+        <h2>Inventory Management System</h2>
+    </div>
+    <div id="about" class="container-fluid">
+        <div class="row">
+            <div class="col-sm-8">
+                <h2>About Inventory Management System</h2><br>
+                <h4>This system is designed for wholesaler company which purchase items from the manufacturer and sale to the retailer in different places. So the company can have several warehouses to store inventory around the world.</h4><br>
+                <p>This system can be used for six user roles: salesman, buyer, order handler, warehouse keeper, deliveryman, company manager.  And it can simplify their work a lot. </p>
+                <br><button class="btn btn-default btn-lg">Get in Touch</button>
+            </div>
+            <div class="col-sm-4">
+                <span class="glyphicon glyphicon-signal logo"></span>
+            </div>
+        </div>
+    </div>
+
+    <div class="container-fluid bg-grey">
+      <div class="row">
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-globe logo"></span>
+        </div>
+        <div class="col-sm-8">
+          <h2>Our Values</h2>
+          <br>
+          <h4><strong>MISSION:</strong> Make your work more clear and easier.</h4>
+        </div>
+      </div>
+    </div>
+
+    <div class="container-fluid text-center">
+      <h2>Merits</h2>
+      <br>
+      <div class="row">
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-off logo-small"></span>
+          <h4>Salesman</h4>
+          <p>Input sales plan. Sign contracts with customer.<br>
+            Manage customers' information. Create sales order. <br>
+            Arrange sale order. Follow the sale order.
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-heart logo-small"></span>
+          <h4>Buyer</h4>
+          <p>
+            Make purchase plans. Create purchase orders. <br>
+            Follow the purchase order. Manage item and stock information
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-lock logo-small"></span>
+          <h4>Financial employee</h4>
+          <p>
+            Pay money for purchase order.<br>
+            Receive money from customers.
+          </p>
+        </div>
+        </div>
+        <br><br>
+      <div class="row">
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-leaf logo-small"></span>
+          <h4>Warehouse Keeper</h4>
+          <p>
+            Inventory Inspection.<br>
+            Warehouse Entry.
+            Warehouse Exit.
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-certificate logo-small"></span>
+          <h4>Deliveryman</h4>
+          <p>
+            Collect stocks from warehouses.<br>
+            Deliver stocks to customers.
+            Confirm sales order.
+          </p>
+        </div>
+        <div class="col-sm-4">
+          <span class="glyphicon glyphicon-wrench logo-small"></span>
+          <h4>Company Manager</h4>
+          <p>
+            View sales report.<br>
+            View purchase report.
+          </p>
+        </div>
+      </div>
+    </div>
+
+</body>
+</html>

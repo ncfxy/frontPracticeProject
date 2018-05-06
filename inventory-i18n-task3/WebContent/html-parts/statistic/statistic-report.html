@@ -1,0 +1,228 @@
+
+
+<div class="container table-responsive" style="height:100%;width:100%;" ng-controller="purchaseReportCtrl">
+	<form class="form-inline">
+		<div class="form-group">
+			<label>Year</label>
+			<select name="year" class="form-control" ng-model="year">
+				<option value="2017">2017</option>
+			</select>
+		</div>
+		<div class="form-group">
+			<label>Report Period</label>
+			<select name="period" class="form-control" ng-model="period" >
+				<option value="Monthly">Monthly</option>
+				<option value="Yearly">Yearly</option>
+			</select>
+		</div>
+		<div class="form-group" ng-show="period == 'Monthly'">
+			<label>Month</label>
+			<select name="month" class="form-control" ng-model="month" ng-change="search()">
+				<option value="1">Jan</option>
+				<option value="2">Feb</option>
+				<option value="3">Mar</option>
+				<option value="4">Apr</option>
+				<option value="5">May</option>
+				<option value="6">Jun</option>
+				<option value="7">Jul</option>
+				<option value="8">Aug</option>
+				<option value="9">Sep</option>
+				<option value="10">Oct</option>
+				<option value="11">Nov</option>
+				<option value="12">Dec</option>
+			</select>
+		</div>
+		<div class="form-group" ng-show="period == 'Yearly'">
+			<label>Report Type</label>
+			<select name="reportType" class="form-control" ng-model="reportType"  ng-change="refresh()">
+				<option value="amount">Amount Report</option>
+				<option value="cost" ng-show="class == 'purchase'">Cost Report</option>
+				<option value="income" ng-show="class == 'sales'">Income Report</option>
+			</select>
+		</div>
+		<!-- <div class="form-group">
+			<label>Customer Name</label>
+			<input name="customerName" type="text"
+			class="form-control" placeholder="Name" ng-model="customerName">
+		</div>
+
+
+
+		<button type="submit" class="btn btn-primary" ng-click="search()">
+			<span class="glyphicon glyphicon-search"></span> Search
+		</button> -->
+
+	</form>
+
+	<hr>
+	<div class="panel panel-default" style="margin-top: 20px;"  ng-show="period == 'Monthly'">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-pencil"></span> <strong>{{monthName}}'s</strong>
+			<span> {{titleName}} Monthly Report</span>
+			<div class="pull-right">
+				<a class="btn btn-success btn-xs" ng-click="export($event, 'Monthly')"><span class="	glyphicon glyphicon-export"></span>export</a>
+				<a class="btn btn-primary btn-xs" data-toggle="modal" ng-click="printThis($event)"><span class="	glyphicon glyphicon-print"></span>Print</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<h3 class="text-center"><strong>{{monthName}}'s</strong> {{titleName}} Monthly Report</h3>
+			<table class="table table-hover table-condensed table-bordered reportTable">
+				<thead>
+					<tr>
+						<th>Warehouse</th>
+						<th>Classification</th>
+						<th>Code</th>
+						<th>Maker</th>
+						<th>Detail</th>
+						<th>Plan Amount</th>
+						<th ng-if="class == 'purchase' ">Real Purchase Amount</th>
+						<th ng-if="class != 'purchase' ">Real Sales Amount</th>
+						<th>Total Cost</th>
+					</tr>
+				</thead>
+				<tbody id="tbody-stocks">
+					<tr ng-repeat="x in stocks" data-href="#/purchaseDetail?period=Monthly&year={{year}}&month={{month}}&stock_id={{x.id}}&class={{class}}" ng-click="goToDataHref($event)" style="cursor: pointer;">
+						<td>{{ x.name }}</td>
+						<td>{{ x.text }}</td>
+						<td>{{ x.code }}</td>
+						<td>{{ x.maker }}</td>
+						<td>{{ x.detail }}</td>
+						<td>{{ x.planAmount }}</td>
+						<td>{{ x.realPurchaseAmount }}</td>
+						<td>{{ x.totalCost }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+
+	<div class="panel panel-default" style="margin-top: 20px;" ng-show="period == 'Yearly' && reportType == 'amount'">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-pencil"></span> {{titleName}} Amount Yearly Report
+			<div class="pull-right">
+				<a class="btn btn-success btn-xs" ng-click="export($event, 'YearlyAmount')"><span class="	glyphicon glyphicon-export"></span>export</a>
+				<a class="btn btn-primary btn-xs" data-toggle="modal" ng-click="printThis($event)"><span class="	glyphicon glyphicon-print"></span>Print</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<h3 class="text-center">{{titleName}} Amount Yearly Report</h3>
+			<table class="table table-hover table-condensed table-bordered reportTable">
+				<thead>
+					<tr>
+						<th>Warehouse</th>
+						<th>Code</th>
+						<th>Detail</th>
+						<th ng-repeat="m in monthNames">{{m}}</th>
+					</tr>
+				</thead>
+				<tbody id="tbody-stocks">
+					<tr ng-repeat="x in stocks" data-href="#/purchaseDetail?period=Yearly&year={{year}}&month={{month}}&stock_id={{x.id}}&class={{class}}" ng-click="goToDataHref($event)" style="cursor: pointer;">
+						<td>{{ x.name }}</td>
+						<td>{{ x.code }}</td>
+						<td>{{ x.detail }}</td>
+						<td>{{ x.yearAmount[0] }}</td>
+						<td>{{ x.yearAmount[1] }}</td>
+						<td>{{ x.yearAmount[2] }}</td>
+						<td>{{ x.yearAmount[3] }}</td>
+						<td>{{ x.yearAmount[4] }}</td>
+						<td>{{ x.yearAmount[5] }}</td>
+						<td>{{ x.yearAmount[6] }}</td>
+						<td>{{ x.yearAmount[7] }}</td>
+						<td>{{ x.yearAmount[8] }}</td>
+						<td>{{ x.yearAmount[9] }}</td>
+						<td>{{ x.yearAmount[10] }}</td>
+						<td>{{ x.yearAmount[11] }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-default" style="margin-top: 20px;" ng-show="period == 'Yearly' && reportType == 'cost'">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-pencil"></span> {{titleName}} Cost Yearly Report
+			<div class="pull-right">
+				<a class="btn btn-success btn-xs" ng-click="export($event, 'YearlyCost')"><span class="	glyphicon glyphicon-export"></span>export</a>
+				<a class="btn btn-primary btn-xs" data-toggle="modal" ng-click="printThis($event)"><span class="	glyphicon glyphicon-print"></span>Print</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<h3 class="text-center">{{titleName}} Cost Yearly Report</h3>
+			<table class="table table-hover table-condensed table-bordered reportTable">
+				<thead>
+					<tr>
+						<th>Warehouse</th>
+						<th>Code</th>
+						<th>Detail</th>
+						<th ng-repeat="m in monthNames">{{m}}</th>
+					</tr>
+				</thead>
+				<tbody id="tbody-stocks">
+					<tr ng-repeat="x in stocks" data-href="#/purchaseDetail?period=Yearly&year={{year}}&month={{month}}&stock_id={{x.id}}&class={{class}}" ng-click="goToDataHref($event)" style="cursor: pointer;">
+						<td>{{ x.name }}</td>
+						<td>{{ x.code }}</td>
+						<td>{{ x.detail }}</td>
+						<td>{{ x.yearCost[0] }}</td>
+						<td>{{ x.yearCost[1] }}</td>
+						<td>{{ x.yearCost[2] }}</td>
+						<td>{{ x.yearCost[3] }}</td>
+						<td>{{ x.yearCost[4] }}</td>
+						<td>{{ x.yearCost[5] }}</td>
+						<td>{{ x.yearCost[6] }}</td>
+						<td>{{ x.yearCost[7] }}</td>
+						<td>{{ x.yearCost[8] }}</td>
+						<td>{{ x.yearCost[9] }}</td>
+						<td>{{ x.yearCost[10] }}</td>
+						<td>{{ x.yearCost[11] }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+	<div class="panel panel-default" style="margin-top: 20px;" ng-show="period == 'Yearly' && reportType == 'income'">
+		<div class="panel-heading">
+			<span class="glyphicon glyphicon-pencil"></span> {{titleName}} Income Yearly Report
+			<div class="pull-right">
+				<a class="btn btn-success btn-xs" ng-click="export($event, 'YearlyIncome')"><span class="	glyphicon glyphicon-export"></span>export</a>
+				<a class="btn btn-primary btn-xs" data-toggle="modal" ng-click="printThis($event)"><span class="	glyphicon glyphicon-print"></span>Print</a>
+			</div>
+		</div>
+		<div class="panel-body">
+			<h3 class="text-center">{{titleName}} Income Yearly Report</h3>
+			<table class="table table-hover table-condensed table-bordered reportTable">
+				<thead>
+					<tr>
+						<th>Warehouse</th>
+						<th>Code</th>
+						<th>Detail</th>
+						<th ng-repeat="m in monthNames">{{m}}</th>
+					</tr>
+				</thead>
+				<tbody id="tbody-stocks">
+					<tr ng-repeat="x in stocks" data-href="#/itemDetail?id={{ x.id }}" ng-click="detail($event)" style="cursor: pointer;">
+						<td>{{ x.name }}</td>
+						<td>{{ x.code }}</td>
+						<td>{{ x.detail }}</td>
+						<td>{{ x.yearCost[0] }}</td>
+						<td>{{ x.yearCost[1] }}</td>
+						<td>{{ x.yearCost[2] }}</td>
+						<td>{{ x.yearCost[3] }}</td>
+						<td>{{ x.yearCost[4] }}</td>
+						<td>{{ x.yearCost[5] }}</td>
+						<td>{{ x.yearCost[6] }}</td>
+						<td>{{ x.yearCost[7] }}</td>
+						<td>{{ x.yearCost[8] }}</td>
+						<td>{{ x.yearCost[9] }}</td>
+						<td>{{ x.yearCost[10] }}</td>
+						<td>{{ x.yearCost[11] }}</td>
+					</tr>
+				</tbody>
+			</table>
+		</div>
+	</div>
+
+</div>
+
+

@@ -1,0 +1,73 @@
+
+    <div class="container table-responsive" style="height:100%;width:100%;" ng-controller="analysisCtrl">
+        <form class="form-inline text-center">
+            <div class="form-group">
+                <label>Warehouse</label>
+                <select name="q1" class="form-control" ng-model="q1" ng-options="x.warehouseName for x in warehouseChoice" ng-change="search()">
+                    <!-- <option value="0" selected>All</option> -->
+                    <!-- <option ng-repeat="x in warehouseChoice" value="{{x.warehouseId}}">{{x.warehouseName}}</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Classification</label>
+                <select name="q2" class="form-control" ng-model="q2" ng-options="x.classificationName for x in classificationChoice" ng-change="search()">
+                    <!-- <option value="0">All</option> -->
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Code</label> <input name="q3" type="text"
+                class="form-control" placeholder="Prefix Search" ng-model="inputCode">
+            </div>
+            <button type="submit" class="btn btn-primary" ng-click="search()">
+                <span class="glyphicon glyphicon-search"></span> Search
+            </button>
+        </form>
+        <hr>
+
+            <div class="clearfix" style="margin: 10px 0;">
+                <a href="#/addStock" class="btn btn-sm btn-success pull-right"><span
+                    class="glyphicon glyphicon-plus"></span> New</a>
+            </div>
+            <table class="table table-hover table-condensed">
+                <thead>
+                    <tr>
+                        <th>Warehouse</th>
+                        <th>Classification</th>
+                        <th>Code</th>
+                        <th>Maker</th>
+                        <th>Detail</th>
+                        <th>Price</th>
+                        <th>In Stock</th>
+                        <th>Unit</th>
+                        <th>Warning Line</th>
+                        <th>Purchase</th>
+                        <th></th>
+                    </tr>
+                </thead>
+                <tbody id="tbody-stocks">
+                    <tr ng-repeat="x in records" data-href="#/stockDetail?id={{ x.stock_id }}" ng-click="goToDataHref($event)" style="cursor: pointer;background-color:{{x.backgroundColor}}">
+                        <td>{{ x.name }}</td>
+                        <td>{{ x.text }}</td>
+                        <td>{{ x.code }}</td>
+                        <td>{{ x.maker }}</td>
+                        <td>{{ x.detail }}</td>
+                        <td>{{ x.price }}</td>
+                        <td>{{ x.balance }}</td>
+                        <td>{{ x.unit }}</td>
+                        <td>{{ x.warning_line }}</td>
+                        <td>{{purchaseItems[x.stock_id]}}</td>
+                        <td>
+                            <a class="btn btn-primary" name="" ng-click="addToProcurement($event)"><span class="glyphicon glyphicon-plus"></span></a>
+                            <a class="btn btn-danger" name="" ng-click="removeFromProcurement($event)"><span class="glyphicon glyphicon-minus"></span></a>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+            <div class="text-center">
+                <a class="btn btn-primary btn-success text-center" href="#/createOrder"><h4>Back To Create Order</h4></a>
+            </div>
+    </div>
+
+
+
+<!-- <script src="js/index.js"></script> -->

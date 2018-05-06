@@ -1,0 +1,12 @@
+id,create_time,state,type
+10000001,2017-05-27T07:02:17.400Z,create,purchase
+10000002,2017-06-09T04:35:23.622Z,Paid,purchase
+10000003,2017-06-09T04:35:56.959Z,Finished,purchase
+10000004,2017-06-09T04:42:17.369Z,Finished,purchase
+10000005,2017-06-09T07:36:54.219Z,Finished,purchase
+10000006,2017-06-09T10:58:59.351Z,Warehouse Entering,purchase
+10000007,2017-06-14T06:22:39.930Z,Confirmed Purchase Price,purchase
+10000008,2017-06-14T06:23:11.139Z,create,purchase
+10000009,2017-06-14T06:24:25.283Z,Paid,purchase
+10000010,2017-06-14T06:36:03.252Z,Warehouse Entering,purchase
+10000011,2017-06-14T07:07:52.107Z,Warehouse Entering,purchase
