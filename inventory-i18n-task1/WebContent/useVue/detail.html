@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<head>
+<script src="../lib/jquery.js"></script>
+<script src="../lib/alasql.js"></script>
+<script src="../lib/purl.js"></script>
+<script src="../js/db.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vue/dist/vue.js"></script>
+<meta charset="utf-8">
+<title>COMPANY</title>
+</head>
+<body>
+
+	<div id="app">
+		<a href="index.html">back</a>
+
+		<h1 id="emp_no" v-text="emp_no"></h1>
+		<ul>
+			<li id="first_name" v-text="first_name"></li>
+			<li id="last_name" v-text="last_name"></li>
+			<li id="gender" v-text="gender"></li>
+		</ul>
+	</div>
+
+
+	<script src="detail.js"></script>
+</body>
+</html>
